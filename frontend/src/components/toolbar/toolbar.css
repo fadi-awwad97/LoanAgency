@@ -1,0 +1,19 @@
+.nav-bar {
+    background-color: white;
+    /* border: 1px solid red;
+    border-radius: 30px; */
+}
+.logo-title {
+    margin-left:23px;
+    margin-top:0px;
+    color: gray;
+}
+
+.nav-brand {
+    margin-left:200px ;
+}
+
+.nav-links {
+ margin-left:300px;
+
+}

@@ -1,0 +1,80 @@
+.body{
+    
+    margin-top: 0%;
+    background-image: url("../../assets/black1.jpg");
+    background-attachment: fixed;
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat:   no-repeat;
+    background-size:     cover;  
+}
+  .container {
+    height: 600px;
+    padding: 10px;
+    /* border: 1px solid blue; */
+    
+  }
+
+.main-block {
+    float: left;
+    width:48%;
+    padding:15px;
+    box-sizing: border-box;
+    background-color: white;
+    color:grey;
+    text-align: center;
+    height:350px;
+    box-shadow: rgb(0, 0, 0) 3px 3px 6px 0px inset, rgba(0, 0, 0, 0.5) -3px -3px 6px 1px inset;
+    margin-top: 50px;
+    position: relative;
+    animation-name: example;
+    animation-duration: 5s;
+    animation-delay: 0s;
+
+  }
+  .side-block {
+    float: right;
+    width: 48%;
+    background-color: black;
+    color:white;
+    padding:15px;
+    box-sizing: border-box;
+    text-align: center;
+    height:350px;
+    box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
+    margin-top: 50px;
+    position: relative;
+    animation-name: example1;
+    animation-duration: 5s;
+    animation-delay: 0s;
+}
+
+
+.first-line {
+    font-family: 'Russo One', sans-serif;
+}
+.last-line {
+    margin-top: 50px;
+background-color: black;
+height:30px;
+cursor: pointer;
+}
+
+
+.last-line2 {
+    margin-top: 39px;
+background-color: white;
+height:30px;
+color: black;
+}
+
+
+@keyframes example {
+  0%   { left:900px; top:0px;}
+  100%  { left:0px; top:0px;}
+}
+
+@keyframes example1 {
+  0%   { right:900px; top:0px;}
+  100%  { right:0px; top:0px;}
+}

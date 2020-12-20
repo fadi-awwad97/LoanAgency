@@ -1,0 +1,80 @@
+ .contain{
+  background-image: url("../../assets/back5.jpg");
+  background-attachment: fixed;
+    background-size: auto 100%;
+    background-position: center;
+    background-repeat:   no-repeat;
+    background-size:     cover; 
+    height: 550px; 
+  
+} 
+
+
+/* 
+ .diagonal-box {
+  transform: skewY(-11deg);
+  height: 400px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;  
+  background: rgba(31, 28, 28, 0.8);
+} */
+
+
+.content { 	
+
+  
+  width:50%;
+  position: absolute;
+  top: 80px;
+  height: 100px;
+  left: 0;
+  transform: skewY(-6deg);
+  height: 400px;
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;   */
+  background: rgba(31, 28, 28, 0.8);
+  text-align: center;
+  box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+
+} 
+.applyStudent {
+  margin-left: 520px;
+    background-color: #fffefe; 
+    border: none;
+    color: black;
+    padding: 5px 5px;
+    width:250px;
+    text-align: center;
+    text-decoration: none; 
+    font-size: 16px;
+    margin-left: 0;
+    cursor: pointer;
+    border-radius: 5%;
+    font-family:'Times New Roman', Times, serif ;
+}
+.applyStudent:hover {
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
+  opacity: 0.3;
+  background-color :rgba(240, 46, 170, 0.9);
+}
+.content2 { 	
+
+  width:50%;
+  position: absolute;
+  /* top: -182px; */
+  top: 80px;
+  right: 0;
+  height: 100px;
+  /* transform: skewY(-40deg); */
+  transform: skewY(-6deg);
+  height: 400px;
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;   */
+  background: rgba(31, 28, 28, 0.8);
+  text-align: center;
+  box-shadow: rgba(240, 46, 170, 0.4) -5px 5px, rgba(240, 46, 170, 0.3) -10px 10px, rgba(240, 46, 170, 0.2) -15px 15px, rgba(240, 46, 170, 0.1) -20px 20px, rgba(240, 46, 170, 0.05) -25px 25px;
+} 
+.content-body{
+ color: white;
+}
+.content-body2{
+  color: white;
+ }
+
