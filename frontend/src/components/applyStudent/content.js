@@ -83,6 +83,7 @@ const Content = ({ classes }) => {
  
       setUniversitiesName(result.data)
     // console.log(result.data)
+    // console.log(result.data)
   },[]);
 
   
