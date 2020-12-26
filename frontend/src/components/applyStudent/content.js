@@ -106,7 +106,7 @@ const Content = ({ classes }) => {
             console.log(response.data)
             if (response.data==true) {
               alert(firstname + 'Your request been added!');
-              history.push("/")
+              // history.push("/")
             }
           })
   }

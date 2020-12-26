@@ -5,6 +5,8 @@ import AdminHome from './components/adminHome/adminHome';
 import Calculator from './components/calculator/Calculator';
 import ApplyPage from './components/applyPage/applyPage';
 import Home from './components/home';
+import Test from './test';
+
 
 
 import UserContext from "./context/userContext";
@@ -55,7 +57,8 @@ export default function App() {
                 <Route path="/calculator" component={Calculator}  />
                 <Route path="/applyPg" component={ApplyPage}  />  
                 <Route path="/applyHome" component={applyHome}  />  
-                <Route path="/applyStudent" component={applyStudent}  />           
+                <Route path="/applyStudent" component={applyStudent}  />
+                <Route path="/test" component={Test}  />          
             </Switch>
     </UserContext.Provider>
 

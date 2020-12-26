@@ -6,6 +6,7 @@ import Done from "@material-ui/icons/Done";
 import tableIcons from "./TableIcons.js";
 import './adminHome.css';
 import User from "./clientsTable";
+import ChatPage from './agentChat';
 
 
 export default function AdminHome() {
@@ -115,6 +116,7 @@ export default function AdminHome() {
         />
       </div>
       <User />
+      <ChatPage />
         </div>
     )
 }
