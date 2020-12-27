@@ -59,7 +59,7 @@ useEffect(() => {
 
 
   useEffect(()=> {
-    console.log("hellooo")
+    // console.log("hellooo")
     var listenerID = uid.toString();
     CometChat.addMessageListener(
       listenerID, 
@@ -68,6 +68,7 @@ useEffect(() => {
           // console.log("Message received successfully:", message);
           //  addResponseMessage(message.text)
           setMessageRecieved(...messageRecieved,message)
+          // console.log(messageRecieved)
           addResponseMessage(message.text)
         }
       })
@@ -95,9 +96,9 @@ function handleSendmessage(newMessage) {
     
     }
 
-    function handletest() {
-      console.log(messageRecieved);
-    }
+    // function handletest() {
+    //   console.log(messageRecieved);
+    // }
 
     return (
         <div>
@@ -108,7 +109,7 @@ function handleSendmessage(newMessage) {
             <Widget             
             handleNewUserMessage={handleSendmessage}
             />
-            <button onClick={handletest}>console log array</button>
+            {/* <button onClick={handletest}>console log array</button> */}
             </div>
     )
 }

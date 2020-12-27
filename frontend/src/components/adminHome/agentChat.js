@@ -16,7 +16,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Fab from '@material-ui/core/Fab';
 import SendIcon from '@material-ui/icons/Send';
+import RefreshIcon from '@material-ui/icons/Refresh';
 import MaterialTable from 'material-table';
+import { ClickAwayListener } from '@material-ui/core';
+import './agentChat.css'
 
 
 export default function AgentChat() {
@@ -29,8 +32,11 @@ const authToken ="ecommerce-agent4_16088144179c9abe2183372669a2ac0a4c8eab85";
 const [message, setMessage] = useState("");
 const [messagetosend, setMessageToSend] = useState("");
 const [arrmsg, setArrMsg] = useState([]);
-const [time,setTime]= useState([])
-const [loggedInUsers, setLoggedInUsers]= useState([])
+const [time,setTime]= useState([]);
+const [loggedInUsers, setLoggedInUsers]= useState([]);
+const [textForReplying, setTextForReplying]=useState("Send a message");
+const [recieverClient,setRecieverClient]=useState("")
+
 
 const [recievedmessage, setRecievedMessage] = useState("");
 const useStyles = makeStyles({
@@ -39,7 +45,9 @@ const useStyles = makeStyles({
     },
     chatSection: {
       width: '100%',
-      height: '90vh'
+      height: '90vh',
+      backgroundColor: '#4b5c6942',
+      
     },
     headBG: {
         backgroundColor: 'grey'
@@ -84,11 +92,11 @@ useEffect(() => {
               setRecievedMessage(message)
               setArrMsg([...arrmsg,message])
             //   setTime([...time,message.sentAt])
-            var today = new Date(),
-            time1 = today.getHours()-12 + ':' + today.getMinutes() + ':' + today.getSeconds();
-            setTime([...time,time1]);         
+            // var today = new Date(),
+            // time1 = today.getHours()-12 + ':' + today.getMinutes() + ':' + today.getSeconds();
+            // setTime([...time,time1]);         
             }
-          })
+          },[arrmsg])
          );
 
 
@@ -96,11 +104,15 @@ useEffect(() => {
 
 
 function handleSendmessage() {
-var receiverID = recievedmessage.sender.uid ;
-// var receiverID = localStorage.getItem('user').toString();
-var messageText = "ahla kifak";
+  if(recieverClient === "")
+  {
+    var receiverID = recievedmessage.sender.uid ;
+  }
+  else{
+    var receiverID=recieverClient;
+  }
+  
 var receiverType = CometChat.RECEIVER_TYPE.USER;
-
 var textMessage = new CometChat.TextMessage(receiverID, messagetosend, receiverType);
 
 CometChat.sendMessage(textMessage).then(
@@ -108,7 +120,8 @@ CometChat.sendMessage(textMessage).then(
     console.log("Message sent successfully:", message);
     // Do something with message
     // setMessage(message)
-    setArrMsg([...arrmsg,message])
+    setArrMsg([...arrmsg,message]);
+    setMessageToSend("");
   },
   error => {
     console.log("Message sending failed with error:", error);
@@ -127,65 +140,79 @@ let usersRequest = new CometChat.UsersRequestBuilder()
       userList => {
         /* userList will be the list of User class. */
         console.log("User list received:", userList);
-        setLoggedInUsers([...loggedInUsers,userList])
+          setLoggedInUsers(userList)
         /* retrived list can be used to display contact list. */
+        // console.log(userList[0].uid)
       },
       error => {
         console.log("User list fetching failed with error:", error);
       }
     );
 }
-function handles() {
-    // console.log(loggedInUsers[[[0].uid]])
+function handleChooseUserToReply(users)  { 
+    //  setTextForReplying("Reply for ")
+    // console.log(x.sender.uid)
+    // console.log(loggedInUsers)
+    setRecieverClient(users.uid)
+    // console.log(recieverClient)
 }
 
 
     return (
-        <div>
-          <div>
+        <div className="chattingComponent">
+          <div className="chattingSection">
         <Grid container>
             <Grid item xs={12} >
                 <Typography variant="h5" align="center" className="header-message">Chat With Your Customers</Typography>
             </Grid>
+            <Grid item xs={12} >
+                <Typography variant="h5" align="center" className="header-message2">You Are Replying Now To {recieverClient}</Typography>
+            </Grid>
         </Grid>
         <Grid container component={Paper} className={classes.chatSection}>
-            {/* <Grid item xs={3} className={classes.borderRight500}>
-                <List>
-                    <button onClick={handleLoggedInUsers}>Get online users </button>
-                    <ListItem button key="RemySharp">
-                        <ListItemIcon>
-                        <Avatar alt="Remy Sharp" src="https://material-ui.com/static/images/avatar/1.jpg" />
-                        </ListItemIcon>
-                        <ListItemText primary="John Wick"></ListItemText>
-                    </ListItem>
-                </List>
-            </Grid> */}
-            <Grid item xs={3} className={classes.borderRight500}>
-            <button onClick={handleLoggedInUsers}>Get online users </button>
-            <button onClick={handles}>show me shaklo</button>
-             <MaterialTable 
-              title="USERS LIST HERE"
 
-          columns={[
-            { title: 'USERS LIST', field: 'uid'},
-                     
-          ]}
-          data={loggedInUsers}
-             
-             />
+       
+            <Grid item xs={3} className={classes.borderRight500}>
+
+   <Grid container>
+        <Grid item>
+            <Fab><RefreshIcon fontSize="large" color="primary" onClick={handleLoggedInUsers}/> </Fab>
+        </Grid>
+        <Grid className="onlineUsers" >
+             <Typography >Refresh Online Users</Typography>
+        </Grid>
+   </Grid>
+                <List>
+
+                {loggedInUsers.map((users, i) => {           
+                       return   <ListItem selected button onClick={(event) => handleChooseUserToReply(users)}  key={i}>
+                                <ListItemIcon>
+                                <Avatar alt=" Sharp"  />
+                                  </ListItemIcon>
+                                  <ListItemText > {users.uid}</ListItemText>
+                                  </ListItem>          
+                     })}
+                </List>
              </Grid>
+
             <Grid item xs={9}>
                 <List className={classes.messageArea}>
-                    <ListItem key="1">
+                   
                         <Grid container>
                             <Grid item xs={12}>
 
                             {arrmsg.map((x, i) => {
                                if(x.receiverId ==="superhero2"){ 
-                                return  <ListItemText align="left" key={i} >{x.text} </ListItemText>                           
+                                return  <ListItem button  key={i}>
+                                  
+                                 <ListItemText className="bubble bubble-bottom-left" align="left"> <span className="textSpan"> {x.text} </span> <span className="senderSpan"> {x.sender.uid}</span> </ListItemText> 
+                                  
+                                  </ListItem>                           
                                }
                                else 
-                               return <ListItemText align="right" key={i} >{x.text}</ListItemText>
+                               return <ListItem button  key={i} >
+                                 <ListItemText className="bubble2 bubble-bottom-right" align="right"> <span className="textSpan2">{x.text}</span>  </ListItemText> 
+                                 </ListItem>
                             })}
 
                             {/* {time.map((hour, i) => {
@@ -199,16 +226,16 @@ function handles() {
                             <Grid item xs={12}>
                             </Grid>
                         </Grid>
-                    </ListItem>
+                    
                    
                 </List>
                 <Divider />
                 <Grid container style={{padding: '20px'}}>
                     <Grid item xs={11}>
-                        <TextField id="outlined-basic" label="Type Something" fullWidth onChange={(e) => setMessageToSend(e.target.value)}/>
+                        <TextField id="outlined-basic" color="primary" value={messagetosend} label="Send a message" fullWidth onChange={(e) => setMessageToSend(e.target.value)}/>
                     </Grid>
                     <Grid item xs={1} align="right">
-                        <Fab color="primary" aria-label="add" onClick={handleSendmessage}><SendIcon /></Fab>
+                        <Fab color="primary" aria-label="add"  onClick={handleSendmessage}><SendIcon /></Fab>
                     </Grid>
                 </Grid>
             </Grid>
