@@ -34,3 +34,5 @@ application.use("/user", require("./routes/studentRouter"));
 application.use("/user", require("./routes/getStudentRouter"));
 
 application.use("/user", require("./routes/sendemail"));
+
+application.use("/user", require("./routes/realUserRouter"));

@@ -106,7 +106,38 @@ const Content = ({ classes }) => {
             console.log(response.data)
             if (response.data==true) {
               alert(firstname + 'Your request been added!');
-              // history.push("/")
+
+
+              var key = 'AAAA10WWUxI:APA91bHlPzmRRieNQC2o-rt85i7zNa4Er35GIWbWTXnoPqxnooYY4TH7F34_3B2P2gN528BhNKYkGXeKtft44zfYvMT51x6N1KP-EYCUDLSrgNzwd8engzX8YLq3i9wqTW9Tqq_qnF8I';
+              var to = ' cHsEyq8wt5K2ERuvrgi75O:APA91bFlXQowRYOwoCPKlQhI5WUDmvs2cEsn4e4KoVxbYJiNhygWPqMobP-qGdPxL0NxOmkxavJ5ArUnVMKbXKkEEdgqCVSYCXT78TAnr4u63SZD9mhTMeqfAcN7ahJU5SbrMxzxZ1Vh';
+              // var to ="924585448210"
+              var notification = {
+                'title': 'A Student Applied To',
+                'body': 'Loan',
+                
+              };
+              
+              fetch('https://fcm.googleapis.com/fcm/send', {
+                'method': 'POST',
+                'headers': {
+                  'Authorization': 'key=' + key,
+                  'Content-Type': 'application/json'
+                },
+                'body': JSON.stringify({
+                  'notification': notification,
+                  'to': to
+                })
+              }).then(function(response) {
+                console.log(response);
+              }).catch(function(error) {
+                console.error(error);
+              })
+             
+
+
+
+
+              history.push("/")
             }
           })
   }

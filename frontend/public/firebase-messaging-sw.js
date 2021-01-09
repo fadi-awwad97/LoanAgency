@@ -7,8 +7,15 @@ importScripts('https://www.gstatic.com/firebasejs/8.2.1/firebase-messaging.js');
 
 
 firebase.initializeApp({
-    messagingSenderId: "924585448210" 
+  apiKey: "AIzaSyB7_M9CcVenXbxv9IplfVSGEPAIr2wMOQs",
+  authDomain: "loanagencyproject.firebaseapp.com",
+  projectId: "loanagencyproject",
+  storageBucket: "loanagencyproject.appspot.com",
+  messagingSenderId: "924585448210",
+  appId: "1:924585448210:web:9690fe6f1fbd4133a6d9cb",
+  measurementId: "G-RY3XQNT3JP"
 });
+
 const messaging = firebase.messaging();
 
 messaging.setBackgroundMessageHandler(function (payload) {

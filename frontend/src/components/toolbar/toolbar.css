@@ -1,8 +1,11 @@
 .nav-bar {
     background-color: white;
-    /* border: 1px solid red;
-    border-radius: 30px; */
+    /* box-sizing: border-box; */
+    width: 99%;
+    display: flex;
+    flex-direction: row;
 }
+
 .logo-title {
     margin-left:23px;
     margin-top:0px;
@@ -10,10 +13,30 @@
 }
 
 .nav-brand {
-    margin-left:200px ;
+    margin-left:10% ;
+    
 }
 
 .nav-links {
- margin-left:300px;
+ margin-left:35%;
 
 }
+
+
+
+    @media only screen and (max-width:600px) {
+        /* For mobile phones: */
+ 
+        .nav-brand {
+            background-color: black;
+            
+        }
+        .nav-bar{
+            flex-direction: column;
+        }
+        .nav-links {
+            display:inline
+           
+           }
+
+      }

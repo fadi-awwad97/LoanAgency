@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import Alert from '@material-ui/lab/Alert';
 
 export const initializeFirebase = () => {
   firebase.initializeApp({
@@ -17,8 +18,15 @@ export const askForPermissioToReceiveNotifications = async () => {
     await messaging.requestPermission();
     const token = await messaging.getToken();
     console.log('user token: ', token);
-    return token;
-  } catch (error) {
+    // return token;
+
+    messaging.onMessage(function(payload){
+      console.log('onMessage ', payload)
+      // return <Alert severity="info">New Application — check it out!</Alert>
+      // console.log("woslet message yaho")
+    })
+  }
+  catch (error) {
     console.error(error);
   }
 }

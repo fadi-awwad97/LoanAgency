@@ -5,10 +5,10 @@
 
 }
 .apply-header {
-    margin-left: 500px;
+    margin-left: 39.5%;
 }
 .apply-button {
-    margin-left: 520px;
+    margin-left: 41%;
     background-color: #fffefe; 
     border: none;
     color: black;
@@ -27,4 +27,12 @@
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24),0 17px 50px 0 rgba(0,0,0,0.19);
     opacity: 0.3;
     
+}
+
+@media only screen and (max-width:600px) { 
+
+    .apply-button {
+        margin-left: 26%;
+    }
+
 }

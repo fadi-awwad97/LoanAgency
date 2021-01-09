@@ -16,10 +16,16 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Avatar from '@material-ui/core/Avatar';
 import Fab from '@material-ui/core/Fab';
 import SendIcon from '@material-ui/icons/Send';
-import RefreshIcon from '@material-ui/icons/Refresh';
+import ChatIcon from '@material-ui/icons/Message';
+import ChatIcon1 from '@material-ui/icons/Comment';
+import Visibility from '@material-ui/icons/Visibility';
 import MaterialTable from 'material-table';
 import { ClickAwayListener } from '@material-ui/core';
 import './agentChat.css'
+import MessageBox from './messageBox';
+import { func } from 'prop-types';
+import Icon from '@material-ui/core/Icon';
+import SnackBar from './snackbar';
 
 
 export default function AgentChat() {
@@ -36,7 +42,7 @@ const [time,setTime]= useState([]);
 const [loggedInUsers, setLoggedInUsers]= useState([]);
 const [textForReplying, setTextForReplying]=useState("Send a message");
 const [recieverClient,setRecieverClient]=useState("")
-
+const [countUsers,setCountUsers]=useState("")
 
 const [recievedmessage, setRecievedMessage] = useState("");
 const useStyles = makeStyles({
@@ -46,18 +52,24 @@ const useStyles = makeStyles({
     chatSection: {
       width: '100%',
       height: '90vh',
-      backgroundColor: '#4b5c6942',
+      backgroundColor: 'white',
+      borderRadius: "borderRadius",
+      // marginBottom:'5px'
       
     },
     headBG: {
         backgroundColor: 'grey'
     },
     borderRight500: {
-        borderRight: '1px solid #e0e0e0'
+        borderRight: '1px solid #e0e0e0',
+        // backgroundColor:'rgb(13, 27, 150)',
+        backgroundColor:'rgb(124, 133, 216)',
+        borderRadius: "2%"
     },
     messageArea: {
       height: '70vh',
-      overflowY: 'auto'
+      overflowY: 'auto',
+      width:'100%'
     }
   });
   
@@ -91,16 +103,22 @@ useEffect(() => {
               // Handle text message
               setRecievedMessage(message)
               setArrMsg([...arrmsg,message])
-            //   setTime([...time,message.sentAt])
-            // var today = new Date(),
-            // time1 = today.getHours()-12 + ':' + today.getMinutes() + ':' + today.getSeconds();
-            // setTime([...time,time1]);         
+              // handleLoggedInUsers();
+              if(!loggedInUsers.includes(message.sender.uid))
+              {
+                setLoggedInUsers(loggedInUsers => [...loggedInUsers, message.sender.uid])
+              }
+                  
             }
           },[arrmsg])
          );
 
 
     });
+
+    // useEffect(()=>{
+    //   handleLoggedInUsers();
+    // })
 
 
 function handleSendmessage() {
@@ -140,9 +158,10 @@ let usersRequest = new CometChat.UsersRequestBuilder()
       userList => {
         /* userList will be the list of User class. */
         console.log("User list received:", userList);
-          setLoggedInUsers(userList)
+          // setLoggedInUsers(userList)
+          setCountUsers(userList.length)
         /* retrived list can be used to display contact list. */
-        // console.log(userList[0].uid)
+        // console.log("honn " + loggedInUsers)
       },
       error => {
         console.log("User list fetching failed with error:", error);
@@ -150,85 +169,82 @@ let usersRequest = new CometChat.UsersRequestBuilder()
     );
 }
 function handleChooseUserToReply(users)  { 
-    //  setTextForReplying("Reply for ")
-    // console.log(x.sender.uid)
-    // console.log(loggedInUsers)
-    setRecieverClient(users.uid)
-    // console.log(recieverClient)
+
+    setRecieverClient(users)
+
 }
 
+// function handleUsers(user) {
+//   loggedInUsers.push(user)
+// }
 
     return (
         <div className="chattingComponent">
           <div className="chattingSection">
-        <Grid container>
-            <Grid item xs={12} >
-                <Typography variant="h5" align="center" className="header-message">Chat With Your Customers</Typography>
+    
+        <Grid  item xs={12}  container>
+        <Grid  item  xs={3} >
+          <Typography variant="h5" align="center" color="primary">Fly-Financial</Typography>
+       
             </Grid>
-            <Grid item xs={12} >
+            <Grid  item  xs={9} >
+                <Typography variant="h5"  align="center" className="header-message">Chat With Your Customers</Typography>
+            </Grid>
+            <Grid  item  align="center" xs={3} >
+            <Icon  color="primary">
+          <ChatIcon/>
+          </Icon>
+            <Icon  color="primary">
+          <ChatIcon1/>
+          </Icon>
+            </Grid>
+            <Grid item xs={9} >
                 <Typography variant="h5" align="center" className="header-message2">You Are Replying Now To {recieverClient}</Typography>
             </Grid>
         </Grid>
-        <Grid container component={Paper} className={classes.chatSection}>
-
-       
+        <Grid container component={Paper} className={classes.chatSection}>       
             <Grid item xs={3} className={classes.borderRight500}>
 
-   <Grid container>
-        <Grid item>
+   {/* <Grid xs={3} container> */}
+        {/* <Grid item>
             <Fab><RefreshIcon fontSize="large" color="primary" onClick={handleLoggedInUsers}/> </Fab>
-        </Grid>
-        <Grid className="onlineUsers" >
-             <Typography >Refresh Online Users</Typography>
-        </Grid>
-   </Grid>
-                <List>
-
+        </Grid> */}
+        {/* <Grid className="onlineUsers" >
+             <Typography >Reply To Clients Here</Typography>
+            
+        </Grid> */}
+   {/* </Grid> */}
+               <Grid container>
+                <List className="listofusers">
                 {loggedInUsers.map((users, i) => {           
                        return   <ListItem selected button onClick={(event) => handleChooseUserToReply(users)}  key={i}>
                                 <ListItemIcon>
                                 <Avatar alt=" Sharp"  />
-                                  </ListItemIcon>
-                                  <ListItemText > {users.uid}</ListItemText>
+                                  </ListItemIcon>                                 
+                                  <ListItemText align="left"> {users}</ListItemText>
                                   </ListItem>          
                      })}
+
+                </List>
+                </Grid>
+               
+                <Divider />
+                <Divider />
+                <Divider />
+                <List>
+                  <Typography style={{marginLeft:"20%"}}>Logged In Users : {countUsers} <Visibility onClick={handleLoggedInUsers}/></Typography>
                 </List>
              </Grid>
+              {/* <ListItemText > {users.uid}</ListItemText> */}
 
             <Grid item xs={9}>
+
                 <List className={classes.messageArea}>
-                   
-                        <Grid container>
-                            <Grid item xs={12}>
+                        <MessageBox data={arrmsg} reciever={recieverClient} />
+                       
 
-                            {arrmsg.map((x, i) => {
-                               if(x.receiverId ==="superhero2"){ 
-                                return  <ListItem button  key={i}>
-                                  
-                                 <ListItemText className="bubble bubble-bottom-left" align="left"> <span className="textSpan"> {x.text} </span> <span className="senderSpan"> {x.sender.uid}</span> </ListItemText> 
-                                  
-                                  </ListItem>                           
-                               }
-                               else 
-                               return <ListItem button  key={i} >
-                                 <ListItemText className="bubble2 bubble-bottom-right" align="right"> <span className="textSpan2">{x.text}</span>  </ListItemText> 
-                                 </ListItem>
-                            })}
-
-                            {/* {time.map((hour, i) => {
-                                
-                            return <ListItemText align="left" key={i} >{hour}</ListItemText>
-
-                            })} */}
-                            
-                               
-                            </Grid>
-                            <Grid item xs={12}>
-                            </Grid>
-                        </Grid>
-                    
-                   
                 </List>
+
                 <Divider />
                 <Grid container style={{padding: '20px'}}>
                     <Grid item xs={11}>
@@ -241,7 +257,9 @@ function handleChooseUserToReply(users)  {
             </Grid>
         </Grid>
       </div>
-  
+ 
+      {/* <SnackBar reciever={recievedmessage}/> */}
+      
 </div>
     )
 }

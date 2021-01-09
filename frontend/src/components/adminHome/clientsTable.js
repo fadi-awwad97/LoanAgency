@@ -2,9 +2,9 @@
 import React,{useEffect,useState} from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios';
-import Done from "@material-ui/icons/Done";
+import Done from "@material-ui/icons/Mail";
 import tableIcons from "./TableIcons.js";
-
+// import { askForPermissioToReceiveNotifications } from '../../pushnotification';
 
 
 export default function AdminHome() {
@@ -20,7 +20,7 @@ export default function AdminHome() {
      
         setData(result.data);
         // console.log(data)
-      }, []);
+      },[]);
 
 
 
@@ -51,7 +51,6 @@ export default function AdminHome() {
             { title: 'last Name', field: 'lastName'},
             { title: 'Email', field: 'email'},
             { title: 'Phone', field: 'phone'},    
-            { title: 'CLIENT SALARY', field: 'monthlySal'},
             { title: 'CLIENT SALARY', field: 'monthlySal'},
             { title: 'WORKING YEARS', field: 'howLong'},
             { title: 'LOAN REQUESTED', field: 'loanOption'},

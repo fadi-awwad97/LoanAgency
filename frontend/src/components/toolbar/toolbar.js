@@ -8,7 +8,7 @@ import './toolbar.css';
 export default function App() {
   return (
     <>
-      <Navbar className="nav-bar">
+      <Navbar  className="nav-bar">
         <Navbar.Brand className="nav-brand" href="#home">
         {"FLY"}<img
             alt="logo"
@@ -20,10 +20,10 @@ export default function App() {
         </Navbar.Brand>
         <Navbar.Toggle />
         <Navbar.Collapse>
-          <Nav className="nav-links">
-            <Nav.Link  href="/">HOME</Nav.Link>
-            <Nav.Link  href="/applyHome">APPLY NOW</Nav.Link>
-            <NavDropdown title="PERSONAL LOANS">
+          <Nav  className="nav-links">
+            <Nav.Link   href="/">HOME</Nav.Link>
+            <Nav.Link   href="/applyHome">APPLY NOW</Nav.Link>
+            <NavDropdown  title="PERSONAL LOANS">
               <NavDropdown.Item href="#action/1">LONG TERM</NavDropdown.Item>
               <NavDropdown.Item href="#action/2">SHORT TERM </NavDropdown.Item>
               <NavDropdown.Item href="#action/3">WEDDING</NavDropdown.Item>

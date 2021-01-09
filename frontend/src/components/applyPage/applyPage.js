@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
@@ -12,6 +12,10 @@ import Axios from "axios";
 import Image from '../../assets/apply-bg.jpg';
 import './applyPage.css';
 import {useHistory} from 'react-router-dom';
+
+
+
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -72,6 +76,11 @@ export default function VerticalLinearStepper() {
   const [howLong, setHowLong] = useState("");
   const [loanOption, setLoanOption] = useState("");
   const history= useHistory();
+
+
+  // useEffect(() => {
+  //   askForPermissioToReceiveNotifications();
+  // }, [])
   
   function getSteps() {
     return ['1', '2', '3','4','5','6'];
@@ -97,8 +106,46 @@ export default function VerticalLinearStepper() {
             "http://localhost:5000/user/apply",
             applyInfo
           );  
+
+
+
+          var key = 'AAAA10WWUxI:APA91bHlPzmRRieNQC2o-rt85i7zNa4Er35GIWbWTXnoPqxnooYY4TH7F34_3B2P2gN528BhNKYkGXeKtft44zfYvMT51x6N1KP-EYCUDLSrgNzwd8engzX8YLq3i9wqTW9Tqq_qnF8I';
+          var to = ' cHsEyq8wt5K2ERuvrgi75O:APA91bFlXQowRYOwoCPKlQhI5WUDmvs2cEsn4e4KoVxbYJiNhygWPqMobP-qGdPxL0NxOmkxavJ5ArUnVMKbXKkEEdgqCVSYCXT78TAnr4u63SZD9mhTMeqfAcN7ahJU5SbrMxzxZ1Vh';
+          // var to ="924585448210"
+          var notification = {
+            'title': 'A Client Applied To',
+            'body': loanOption,
+            
+          };
+          
+          fetch('https://fcm.googleapis.com/fcm/send', {
+            'method': 'POST',
+            'headers': {
+              'Authorization': 'key=' + key,
+              'Content-Type': 'application/json'
+            },
+            'body': JSON.stringify({
+              'notification': notification,
+              'to': to
+            })
+          }).then(function(response) {
+            console.log(response);
+          }).catch(function(error) {
+            console.error(error);
+          })
+         
+            
+
+
+
           history.push("/")
   }
+  function handle() {
+    // 'icon': 'firebase-logo.png',
+
+  }
+
+
 
   function getStepContent(step) {
     switch (step) {
@@ -203,6 +250,7 @@ export default function VerticalLinearStepper() {
   return (
     
      <div className={classes.root}>
+       {/* <button onClick={handle}>click me</button> */}
       <Stepper activeStep={activeStep} orientation="vertical" className={classes.stepper} >
         {steps.map((label, index) => (
           <Step key={label}>
