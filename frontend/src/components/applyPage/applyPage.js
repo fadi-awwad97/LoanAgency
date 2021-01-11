@@ -16,6 +16,7 @@ import {useHistory} from 'react-router-dom';
 
 
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
@@ -33,7 +34,8 @@ const useStyles = makeStyles((theme) => ({
 
   },
   stepper: {
-    backgroundColor:'rgba(0, 0, 0, 0)',
+    backgroundColor:'rgba(140, 140, 140, 0.5)',
+    // backgroundColor:'grey',
     
   },
 
@@ -49,7 +51,7 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(3),
     backgroundColor:'rgba(126, 118, 128, 0.3)',
     alignContent:'center',
-    height:'520px',
+    height:'580px',
     textAlign:'center'
     
   
@@ -74,7 +76,7 @@ export default function VerticalLinearStepper() {
   const [phone, setPhone] = useState("");
   const [monthlySal, setMonthlySal] = useState("");
   const [howLong, setHowLong] = useState("");
-  const [loanOption, setLoanOption] = useState("");
+  const [loanOption, setLoanOption] = useState("SHORT TERM LOAN");
   const history= useHistory();
 
 
@@ -216,7 +218,7 @@ export default function VerticalLinearStepper() {
           case 4:
             return (<div>
             <Form.Group className="formGroup" size="lg" >
-            <Form.Label>How LONG Have YOU BEEN IN A COMPANY</Form.Label>
+            <Form.Label >HAVE BEEN WORKING</Form.Label>
               <Form.Control
                 autoFocus
                 type="text"
@@ -289,6 +291,17 @@ export default function VerticalLinearStepper() {
           </Button>
         </Paper>
       )}
+          <Paper elevation={7}style={{opacity:0.8,height:'100%',margin:'200px',borderRadius:'30px',padding:'10px'}}>
+          <Typography style={{backgroundColor:'rgb(35, 76, 165)'}} align="center">My Info</Typography>
+        <Typography>My Name :{firstName}</Typography>
+        <Typography>Sur Name :{lastName}</Typography>
+        <Typography>Email :{email}</Typography>
+        <Typography>Phone :{phone}</Typography>
+        <Typography>Monthly Salary :{monthlySal}</Typography>
+        <Typography>Working Years :{howLong}</Typography>
+        <Typography>Loan Type:{loanOption}</Typography>
+        </Paper>
+
     </div>
 
   );

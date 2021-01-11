@@ -4,6 +4,7 @@ import Toolbar from './toolbar/toolbar'
 import HomeBody from './homeBody/homeBody';
 import HomeFooter from './homeFooter/homeFooter';
 import SecondHome from './secondHomeBody/secondHomeBody';
+import Map from './map';
 
 import { CometChat } from "@cometchat-pro/chat"
 import {Widget, addResponseMessage, addUserMessage, dropMessages} from 'react-chat-widget';
@@ -177,6 +178,7 @@ function handleSendmessage(newMessage) {
             <HomeBody />
             <HomeFooter listenerID={uid}/>
             <SecondHome />
+            <Map />
             <Widget             
         handleNewUserMessage={handleSendmessage}
         title="Welcome To Fly Financial"
