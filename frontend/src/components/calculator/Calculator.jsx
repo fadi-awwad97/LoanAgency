@@ -111,18 +111,18 @@ function Calculator() {
           {!results.isResult ? (
             //   Form to collect data from the user
             <div className='form-items'>
-              <div>
+              <div className="items">
                 <label id='label'>Amount:</label>
                 <input
                   type='text'
                   name='amount'
-                  placeholder='Loan amount'
+                  placeholder='Loan Amount'
                   value={userValues.amount}
                   // onChange method sets the values given by the user as input to the userValues state
                   onChange={handleInputChange}
                 />
               </div>
-              <div>
+              <div className="items">
                 <label id='label'>Interest:</label>
                 <input
                   type='text'
@@ -132,12 +132,12 @@ function Calculator() {
                   onChange={handleInputChange}
                 />
               </div>
-              <div>
+              <div className="items">
                 <label id='label'>Years:</label>
                 <input
                   type='text'
                   name='years'
-                  placeholder='Years to repay'
+                  placeholder='Years To Repay'
                   value={userValues.years}
                   onChange={handleInputChange}
                 />
@@ -151,15 +151,15 @@ function Calculator() {
                 Loan amount: ${userValues.amount} <br /> Interest:{' '}
                 {userValues.interest}% <br /> Years to repay: {userValues.years}
               </h4>
-              <div>
+              <div className="items">
                 <label id='label'>Monthly Payment:</label>
                 <div className="result"><span className="s">{results.monthlyPayment}</span></div>
               </div>
-              <div>
+              <div className="items">
                 <label id='label'>Total Payment: </label>
                 <div className="result"><span className="s">{results.totalPayment}</span></div>
               </div>
-              <div>
+              <div className="items">
                 <label id='label'>Total Interest:</label>
                 <div className="result"><span className="s">{results.totalInterest}</span></div>
               </div>

@@ -31,7 +31,7 @@ const [messageRecieved, setMessageRecieved] = useState([]);
 useEffect(() => {
 
   
-  
+    addResponseMessage("Hello Dear We Are Here to Help You")
   // 5ala2naaa l user hone 
     const user = new CometChat.User(uid);
   

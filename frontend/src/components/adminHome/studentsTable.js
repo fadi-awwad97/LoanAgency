@@ -42,7 +42,7 @@ export default function StudentsTable() {
         .then(function(response) {
           // console.log(response.data);
            if (response.data ==='Email is sent') {
-             alert("email is sent")
+             alert("Email Is Sent")
            }
         })
         .catch(function(error) {
@@ -61,15 +61,15 @@ export default function StudentsTable() {
 
                     columns={[
                     { title: 'First Name', field: 'firstname'},
-                    { title: 'last Name', field: 'lastname'},
+                    { title: 'Last Name', field: 'lastname'},
                     { title: 'Phone', field: 'phone'},    
                     { title: 'Email', field: 'email'},
-                    { title: 'working', field: 'working'},
-                    { title: 'universityname', field: 'universityname' },
-                    { title: 'universityid', field: 'universityid' },
-                    { title: 'universitymajor', field: 'universitymajor'},
-                    { title: 'expectedyears', field: 'expectedyears' },
-                    { title: 'neededamount', field: 'neededamount' }, 
+                    { title: 'Currently Working', field: 'working'},
+                    { title: 'University Name', field: 'universityname' },
+                    { title: 'University Id', field: 'universityid' },
+                    { title: 'University Major', field: 'universitymajor'},
+                    { title: 'Expected Years', field: 'expectedyears' },
+                    { title: 'Needed Amount', field: 'neededamount' }, 
                             
                     ]}
 
@@ -116,7 +116,7 @@ export default function StudentsTable() {
                     actions={[
                     {
                     icon: () => <Done />,
-                    tooltip: "Send EMAIL",
+                    tooltip: "Send Email",
                     onClick: (event, rowData) => (
                     sendEmail(rowData.email)
                     )

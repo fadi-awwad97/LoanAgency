@@ -43,6 +43,8 @@ const useStyles = makeStyles((theme) => ({
   button: {
     marginTop: theme.spacing(1),
     marginRight: theme.spacing(1),
+    marginLeft:'-10px'
+
   },
   actionsContainer: {
     marginBottom: theme.spacing(2),
@@ -115,8 +117,8 @@ export default function VerticalLinearStepper() {
           var to = ' cHsEyq8wt5K2ERuvrgi75O:APA91bFlXQowRYOwoCPKlQhI5WUDmvs2cEsn4e4KoVxbYJiNhygWPqMobP-qGdPxL0NxOmkxavJ5ArUnVMKbXKkEEdgqCVSYCXT78TAnr4u63SZD9mhTMeqfAcN7ahJU5SbrMxzxZ1Vh';
           // var to ="924585448210"
           var notification = {
-            'title': 'A Client Applied To',
-            'body': loanOption,
+            'title': loanOption,
+            'body': firstName +" "+ lastName + " Applied for " + loanOption,
             
           };
           
@@ -168,7 +170,7 @@ export default function VerticalLinearStepper() {
               autoFocus
               type="text"
               value={lastName}
-              placeholder="last Name"
+              placeholder="Last Name"
               onChange={(e) => setLastName(e.target.value)}
             />
           </Form.Group>
@@ -204,7 +206,7 @@ export default function VerticalLinearStepper() {
     case 3:
             return (<div>
             <Form.Group className="formGroup" size="lg" >
-            <Form.Label>MONTHLY SALARY</Form.Label>
+            <Form.Label>Monthly Salary</Form.Label>
               <Form.Control
                 autoFocus
                 type="text"
@@ -218,7 +220,7 @@ export default function VerticalLinearStepper() {
           case 4:
             return (<div>
             <Form.Group className="formGroup" size="lg" >
-            <Form.Label >HAVE BEEN WORKING</Form.Label>
+            <Form.Label >Working Experience</Form.Label>
               <Form.Control
                 autoFocus
                 type="text"
@@ -232,9 +234,10 @@ export default function VerticalLinearStepper() {
           case 5:
             return (<div>
             <Form.Group className="formGroup" size="lg" >
-            <Form.Label>Loan Option You are interested IN</Form.Label>
+            <Form.Label>Loan Option </Form.Label>
             <Form.Control 
             className="selectInput"
+            style={{width:'200px'}}
              value={loanOption} 
              onChange={(e) => setLoanOption(e.target.value)} as="select" custom>
               <option>SHORT TERM LOAN</option>
@@ -291,15 +294,15 @@ export default function VerticalLinearStepper() {
           </Button>
         </Paper>
       )}
-          <Paper elevation={7}style={{opacity:0.8,height:'100%',margin:'200px',borderRadius:'30px',padding:'10px'}}>
+          <Paper elevation={7}style={{opacity:0.8,height:'100%',margin:'200px',borderRadius:'30px',padding:'10px',width:'500px'}}>
           <Typography style={{backgroundColor:'rgb(35, 76, 165)'}} align="center">My Info</Typography>
-        <Typography>My Name :{firstName}</Typography>
-        <Typography>Sur Name :{lastName}</Typography>
-        <Typography>Email :{email}</Typography>
-        <Typography>Phone :{phone}</Typography>
-        <Typography>Monthly Salary :{monthlySal}</Typography>
-        <Typography>Working Years :{howLong}</Typography>
-        <Typography>Loan Type:{loanOption}</Typography>
+        <Typography  >First Name : <Typography style={{marginLeft:'186px',color:'blue'}} display="inline">{firstName}</Typography></Typography>
+        <Typography>Last Name :<Typography style={{marginLeft:'192px',color:'blue'}} display="inline">{lastName}</Typography></Typography>
+        <Typography>Email :<Typography style={{marginLeft:'230px',color:'blue'}} display="inline">{email}</Typography></Typography>
+        <Typography>Phone :<Typography style={{marginLeft:'225px',color:'blue'}} display="inline">{phone}</Typography></Typography>
+        <Typography>Monthly Salary :<Typography style={{marginLeft:'163px',color:'blue'}} display="inline">{monthlySal}</Typography></Typography>
+        <Typography>Years of Experience :<Typography style={{marginLeft:'125px',color:'blue'}} display="inline">{howLong}</Typography></Typography>
+        <Typography>Loan Type:<Typography style={{marginLeft:'200px',color:'blue'}} display="inline">{loanOption}</Typography></Typography>
         </Paper>
 
     </div>

@@ -31,7 +31,7 @@ export default function AdminHome() {
         .then(function(response) {
           // console.log(response.data);
            if (response.data ==='Email is sent') {
-             alert("email is sent")
+             alert("Email Is Sent")
            }
         })
         .catch(function(error) {
@@ -40,7 +40,7 @@ export default function AdminHome() {
       }
      
     return (
-        <div className="cont">
+        
              <div className="conta" >
         <MaterialTable
            title="Select row(s) to get the option to delete"
@@ -48,12 +48,12 @@ export default function AdminHome() {
 
           columns={[
             { title: 'First Name', field: 'firstName'},
-            { title: 'last Name', field: 'lastName'},
+            { title: 'Last Name', field: 'lastName'},
             { title: 'Email', field: 'email'},
             { title: 'Phone', field: 'phone'},    
-            { title: 'CLIENT SALARY', field: 'monthlySal'},
-            { title: 'WORKING YEARS', field: 'howLong'},
-            { title: 'LOAN REQUESTED', field: 'loanOption'},
+            { title: 'Client Salary', field: 'monthlySal'},
+            { title: 'Working Experience', field: 'howLong'},
+            { title: 'Loan Requested', field: 'loanOption'},
 
                      
           ]}
@@ -66,7 +66,7 @@ export default function AdminHome() {
             backgroundColor: '#EEE',
           },
           headerStyle: {
-            backgroundColor: 'navy',
+            backgroundColor: '#4e89ae',
             color: '#FFF'
           }
          
@@ -101,7 +101,7 @@ export default function AdminHome() {
         actions={[
             {
               icon: () => <Done />,
-              tooltip: "Send EMAIL",
+              tooltip: "Send Email",
               onClick: (event, rowData) => (
               sendEmail(rowData.email)
               )
@@ -111,6 +111,6 @@ export default function AdminHome() {
           title="CLIENTS APPLICATIONS"
         />
       </div>
-        </div>
+     
     )
 }

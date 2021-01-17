@@ -32,9 +32,9 @@ export default function ApplyHome() {
            <h1 className="first-line">Multiple Funding Options </h1>
            <h2> <GiReceiveMoney/> </h2>
           <h3>----------------------------------</h3>
-          <h3>Get You the Best Rate And Term Possible</h3>        
+          <h3>We Provide the Best Rates And Terms Possible</h3>        
           <h3>----------------------------------</h3>
-          <h5>Term Loans, LONG TERM, SHORT TERM and WEDDING LOANS</h5>
+          <h5> LONG TERM, SHORT TERM and WEDDING LOANS</h5>
           <h3>----------------------------------</h3>
           <button onClick={handleApply} className="applyStudent">APPLY HERE</button>
           </div>

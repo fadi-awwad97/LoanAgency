@@ -53,12 +53,17 @@
 
 .first-line {
     font-family: 'Russo One', sans-serif;
+
 }
 .last-line {
 margin-top: 50px;
 background-color: black;
 height:30px;
 cursor: pointer;
+color: white;
+/* animation-name: example2 ;
+animation-duration: 10s;
+animation-iteration-count: infinite; */
 }
 
 
@@ -68,6 +73,11 @@ background-color: white;
 height:30px;
 color: black;
 }
+/* @keyframes example2 {
+  0%   {background-color: black; color: white;}
+  100%  {background-color: white; color: black;}
+
+} */
 
 
 @keyframes example {

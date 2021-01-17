@@ -25,7 +25,7 @@ import './agentChat.css'
 import MessageBox from './messageBox';
 import { func } from 'prop-types';
 import Icon from '@material-ui/core/Icon';
-import SnackBar from './snackbar';
+// import backchat from '../../assets/backchat.jpg';
 
 
 export default function AgentChat() {
@@ -51,10 +51,11 @@ const useStyles = makeStyles({
     },
     chatSection: {
       width: '100%',
-      height: '90vh',
+      height: '70vh',
       backgroundColor: 'white',
       borderRadius: "borderRadius",
       // marginBottom:'5px'
+     
       
     },
     headBG: {
@@ -62,14 +63,17 @@ const useStyles = makeStyles({
     },
     borderRight500: {
         borderRight: '1px solid #e0e0e0',
-        // backgroundColor:'rgb(13, 27, 150)',
+        // backgroundColor:'#f2a365',
         backgroundColor:'rgb(124, 133, 216)',
+        // backgroundImage: `url(${backchat})`,
         borderRadius: "2%"
     },
     messageArea: {
-      height: '70vh',
+      height: '50vh',
       overflowY: 'auto',
-      width:'100%'
+      width:'100%',
+      
+      
     }
   });
   

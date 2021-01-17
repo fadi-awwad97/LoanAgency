@@ -56,6 +56,7 @@ import axios from 'axios';
 import { Chart, Series } from 'devextreme-react/chart';
 // import { dataSource } from './data.js';
 import Paper from '@material-ui/core/Paper';
+import './barChart.css';
 export default function BarChart() {
   const [data, setData] = useState([]);
   const [longTerm,setLongTerm]=useState(0);
@@ -67,6 +68,7 @@ export default function BarChart() {
   useEffect(async () => {
     const result = await axios(
       'http://localhost:5000/user/getUserData',
+      
     );
     const result2 = await axios(
       'http://localhost:5000/user/getStudentData',
@@ -122,7 +124,8 @@ export default function BarChart() {
     return (
       // <Chart id="chart" dataSource={dataSource}>
       <Paper>
-     <Chart id="chart" dataSource={dataSource} style={{width:'80%',marginLeft:'10%',height:'10%'}}>
+     <Chart id="chart" dataSource={dataSource} >
+     {/* <Chart id="chart" dataSource={dataSource} style={{width:'80%',marginLeft:'10%',height:'10%'}}> */}
         <Series
           valueField="number"
           argumentField="type"

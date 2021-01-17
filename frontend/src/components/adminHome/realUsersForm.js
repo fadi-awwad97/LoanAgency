@@ -74,7 +74,7 @@ export default function RealUsersForm({}) {
             required
             id="firstName"
             name="firstName"
-            label="First name"
+            label="First Name"
             fullWidth
             value={firstname}
             autoComplete="given-name"
@@ -86,7 +86,7 @@ export default function RealUsersForm({}) {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Last Name"
             fullWidth
             value={lastname}
             autoComplete="family-name"
@@ -98,7 +98,7 @@ export default function RealUsersForm({}) {
             required
             id="address"
             name="address"
-            label="Address line "
+            label="Address Line "
             fullWidth
             value={address}
             autoComplete=" address-line"
@@ -110,7 +110,7 @@ export default function RealUsersForm({}) {
             required
             id="email"
             name="email"
-            label="email"
+            label="Email"
             fullWidth
             autoComplete="email"
             value={email}
@@ -122,7 +122,7 @@ export default function RealUsersForm({}) {
             required
             id="phone"
             name="phone"
-            label="phone"
+            label="Phone"
             fullWidth
             autoComplete="phone"
             value={phone}
@@ -147,9 +147,9 @@ export default function RealUsersForm({}) {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="monthlyPayment"
+            id="onthlyPayment"
             name="monthlyPayment"
-            label="monthlyPayment"
+            label="Monthly Payment"
             fullWidth
             autoComplete="monthlyPayment"
             value={monthlyPayment}
@@ -161,7 +161,7 @@ export default function RealUsersForm({}) {
             required
             id="totalPayment"
             name="totalPayment"
-            label="totalPayment"
+            label="Total Payment"
             fullWidth
             autoComplete="totalPayment"
             value={totalPayment}

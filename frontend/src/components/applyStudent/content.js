@@ -54,7 +54,7 @@ const Content = ({ classes }) => {
   const handleChange = index => e => setActiveStep(index);
   const nandleNext = () => setActiveStep(activeStep + 1);
   const nandlePrev = () => setActiveStep(activeStep - 1);
-  const tabs = ["Personal", "University", "LoanAmount"];
+  const tabs = ["Personal", "University", "Loan Amount"];
 
 
   const [firstname, setFirstName] = useState("");
@@ -112,8 +112,8 @@ const Content = ({ classes }) => {
               var to = ' cHsEyq8wt5K2ERuvrgi75O:APA91bFlXQowRYOwoCPKlQhI5WUDmvs2cEsn4e4KoVxbYJiNhygWPqMobP-qGdPxL0NxOmkxavJ5ArUnVMKbXKkEEdgqCVSYCXT78TAnr4u63SZD9mhTMeqfAcN7ahJU5SbrMxzxZ1Vh';
               // var to ="924585448210"
               var notification = {
-                'title': 'A Student Applied To',
-                'body': 'Loan',
+                'title': 'Loan',
+                'body': firstname +" "+ lastname + " Applied For Student Loan",
                 
               };
               
@@ -324,7 +324,7 @@ const Content = ({ classes }) => {
           <div>
             <React.Fragment>
             <Typography variant="h6" gutterBottom>
-        YOUR Requested Loan Amount $
+        Your Requested Loan Amount $
       </Typography>
 
         <Grid item xs={12} sm={6}>

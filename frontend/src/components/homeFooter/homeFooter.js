@@ -30,7 +30,7 @@ export default function HomeFooter(data) {
     <div className="homeFooter">
         <div className="apply-header">
             <h3>
-            GET PRE-APPROVED
+            Apply Here
             </h3>
         </div>
         <button onClick={handleApply} className="apply-button">APPLY</button>

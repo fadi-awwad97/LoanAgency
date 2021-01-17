@@ -21,9 +21,9 @@ const useStyles = makeStyles({
     float:'right',
     marginRight:'3.6%',
     marginTop:'2%',
-    border:'1px solid red',
-    height:'400px'
-    
+    // border:'1px solid gray',
+    height:'400px',
+    borderRadius:'5px'
     
   
   },
@@ -43,7 +43,7 @@ export default function RealUserTable() {
         
 
     setData(result.data);
-    
+    console.log(result);
   }, []);
 
   function handleSetPaid(user) {
@@ -87,14 +87,14 @@ return   <Accordion key={i}>
         <AccordionDetails>
           <Typography component={'span'} color="textSecondary">
             <List style={{float:'left'}}>
-                <ListItem>firstName: {user.firstname}</ListItem>
-                <ListItem>lastName: {user.lastname}</ListItem>
-                <ListItem>MonthlyPayment: {user.monthlyPayment}</ListItem>
+                <ListItem style={{color:'#111d5e'}}>First Name: {user.firstname}</ListItem>
+                <ListItem style={{color:'#111d5e'}}>Last Name: {user.lastname}</ListItem>
+                <ListItem style={{color:'#111d5e'}}>Monthly Payment: {user.monthlyPayment}</ListItem>
             </List>   
             <List style={{float:'right'}}> 
-                <ListItem>Phone Number: {user.phone}</ListItem>
-                <ListItem>Total Payment: {user.totalPayment}</ListItem>
-                <button onClick={(e)=>{handleSetPaid(user)}} style={{width:'250px'}}>Paid</button>
+                <ListItem style={{color:'#111d5e'}}>Phone Number: {user.phone}</ListItem>
+                <ListItem style={{color:'#111d5e'}}>Total Payment: {user.totalPayment}</ListItem>
+                <button onClick={(e)=>{handleSetPaid(user)}} style={{width:'250px'}}>Send Receipt</button>
             </List> 
           </Typography>
         </AccordionDetails>

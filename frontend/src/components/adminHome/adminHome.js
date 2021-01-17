@@ -1,4 +1,22 @@
 
+
+
+// import React from 'react';
+import clsx from 'clsx';
+import {  useTheme } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+
+
+
+import CssBaseline from '@material-ui/core/CssBaseline';
+
+import Divider from '@material-ui/core/Divider';
+
+import MenuIcon from '@material-ui/icons/Menu';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+
+
 import React,{useEffect,useState} from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios';
@@ -9,6 +27,7 @@ import User from "./clientsTable";
 import ChatPage from './agentChat';
 import RealUserForm from './realUsersForm';
 import RealUserTable from './realUserTable';
+import SwipeableViews from "react-swipeable-views";
 
 import RealUserIcon from '@material-ui/icons/HowToReg';
 import UniIcon from '@material-ui/icons/School';
@@ -33,28 +52,92 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+
 import firebase from 'firebase';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+
+import BarChartIcon from '@material-ui/icons/BarChart';
+
+const drawerWidth = 240;
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    flexGrow: 1,
-    backgroundColor:'rgb(214, 214, 214)'
+    display: 'flex',
   },
-  title: {
+  appBar: {
+    zIndex: theme.zIndex.drawer + 1,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+  },
+  appBarShift: {
+    marginLeft: drawerWidth,
+    width: `calc(100% - ${drawerWidth}px)`,
+    transition: theme.transitions.create(['width', 'margin'], {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  menuButton: {
+    marginRight: 36,
+  },
+  hide: {
+    display: 'none',
+  },
+  drawer: {
+    width: drawerWidth,
+    flexShrink: 0,
+    whiteSpace: 'nowrap',
+  },
+  drawerOpen: {
+    width: drawerWidth,
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.enteringScreen,
+    }),
+  },
+  drawerClose: {
+    transition: theme.transitions.create('width', {
+      easing: theme.transitions.easing.sharp,
+      duration: theme.transitions.duration.leavingScreen,
+    }),
+    overflowX: 'hidden',
+    width: theme.spacing(7) + 1,
+    [theme.breakpoints.up('sm')]: {
+      width: theme.spacing(9) + 1,
+    },
+  },
+  toolbar: {
+    
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    padding: theme.spacing(0, 1),
+    // necessary for content to be below app bar
+    ...theme.mixins.toolbar,
+  },
+  content: {
     flexGrow: 1,
-    marginLeft:'10%'
+    padding: theme.spacing(3),
+    width:'70%'
   },
 }));
 
 export default function AdminHome() {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [open, setOpen] = React.useState(false);
+
+
   const [notficData,setnotficData]=useState([]);
   const [long,setLong]=useState([]);
   const [short,setShort]=useState([]);
   const [wedding,setWedding]=useState([]);
   const [student,setStudent]=useState([]);
-  const classes = useStyles();
+
 
      useEffect(() => {
       // initializeFirebase();
@@ -76,20 +159,22 @@ export default function AdminHome() {
         messaging.onMessage(function(payload){
           console.log('onMessage ', payload.notification.body)
 
-          
-          setnotficData([...notficData,payload.notification.body])
+          setnotficData(notficData => [...notficData, payload.notification.body]);
 
-          if(payload.notification.body==="SHORT TERM LOAN"){
-            setShort([...short,payload.notification.body])
+          
+
+          if(payload.notification.title==="SHORT TERM LOAN"){
+            setShort(short => [...short, payload.notification.body]);
           }
-          if(payload.notification.body==="LONG TERM LOAN"){
-            setLong([...long,payload.notification.body])
+          if(payload.notification.title==="LONG TERM LOAN"){
+            setLong(long => [...long, payload.notification.body]);
           }
-          if(payload.notification.body==="Wedding LOAN"){
-            setWedding([...wedding,payload.notification.body])
+          if(payload.notification.title==="Wedding LOAN"){
+            setWedding(wedding => [...wedding,payload.notification.body])
+            
           }
-          if(payload.notification.body==="Loan"){
-            setStudent([...student,payload.notification.body])
+          if(payload.notification.title==="Loan"){
+            setStudent(student =>[...student,payload.notification.body])
           }
 
         })
@@ -99,59 +184,88 @@ export default function AdminHome() {
       }
     }
 
+
+  const [activeStep, setActiveStep] = useState(0);
+  const handleChange = index => e => setActiveStep(index);
+  const nandleNext = () => setActiveStep(activeStep + 1);
+  const nandlePrev = () => setActiveStep(activeStep - 1);
   
-  const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
 
   const handleClickOpen = () => {
-    setOpen(true);
+    setOpen1(true);
+    console.log(notficData.length);
   };
 
   const handleClose = () => {
-    setOpen(false);
+    setOpen1(false);
     setnotficData([])
     setShort([])
     setLong([])
     setWedding([])
+    setStudent([])
   };
-  // const handleGetnotificationInfo = (data) =>{
 
-  // }
 
-    return (
-        <div className="cont">
-      <AppBar position="static" style={{backgroundColor:'rgb(35, 76, 165)'}}>
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
+
+  const handleDrawerClose = () => {
+    setOpen(false);
+  };
+
+  return (
+    <div className={classes.root}>
+      <CssBaseline />
+      <AppBar
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}
+      >
         <Toolbar>
-
-          <Typography variant="h6" className={classes.title}>
-            FLY FINANCIAL 
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            onClick={handleDrawerOpen}
+            edge="start"
+            className={clsx(classes.menuButton, {
+              [classes.hide]: open,
+            })}
+          >
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6" noWrap>
+            Fly Financial 
           </Typography>
-          <IconButton aria-label="show 17 new notifications" color="inherit">
+          
+            <IconButton style={{marginLeft:"80%"}} aria-label="show notifications" color="inherit">
               <Badge badgeContent={notficData.length} color="secondary">
-                <NotificationsIcon onClick={handleClickOpen}/>
-                <Dialog
-        open={open}
+                 <NotificationsIcon onClick={handleClickOpen}/>
+                 <Dialog
+                 style={{marginLeft:'60%',marginTop:'-100px',width:'50%',height:'100%'}}
+        open={open1}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
       >
-        <DialogTitle >{"New Applicants Just Arrived !"}</DialogTitle>
-        <DialogContent>
-          {/* <DialogContentText > */}
-            {/* {notficData.map((data,i)=>{
-            return  <List key={i}>
-                      <ListItem>
-
+        <DialogTitle >{"New Applicantions !"}</DialogTitle>
+        <DialogContent style={{marginLeft:'-17px'}}>
+                 {/* <DialogContentText > */}
+            {notficData.map((data,i)=>{
+            return  <List  key={i}>
+                      <ListItem style={{borderBottom:'1px solid blue'}}>
+                        {data}
                       </ListItem>
                     </List>
-            })} */}
-                   <List >
+            })}
+                   {/* <List >
                       <ListItem>Short Term Loan : {short.length}</ListItem>   
                       <ListItem>Long Term Loan : {long.length}</ListItem>
                       <ListItem>Wedding Loan : {wedding.length}</ListItem>
                       <ListItem>Student Loan : {student.length}</ListItem>
-                    </List>
-              
-          {/* </DialogContentText> */}
+                    </List> */}
         </DialogContent>
         <DialogActions>
 
@@ -162,52 +276,72 @@ export default function AdminHome() {
       </Dialog>
               </Badge>
             </IconButton>
+
         </Toolbar>
       </AppBar>
-           <div className="sidebar">
- 
-
-            <li>
-              <Link activeClass="active" to="StudentApp" spy={true} smooth={true}> <UniIcon fontSize="large"/> </Link>
-            </li>
-
-            <li>
-            <Link  to="Apps" spy={true} smooth={true}><AppsIcons fontSize="large"/></Link>
-            </li>
-
-
-            <li>
-            <Link  to="Chat" spy={true} smooth={true}>< ChatIcon fontSize="large"/></Link>
-            </li>
-
-            <li>
-            <Link  to="realUser" spy={true} smooth={true}><RealUserIcon fontSize="large" /></Link>
-            </li>
-
-            </div>
-            
-      <div id="StudentApp">
-        <StudentTable/>
-      </div>
-      <div id="Apps">
-      <User />
-      </div>
-      <div id="Chat">
-      <ChatPage />
-      </div>
-      <div id="realUser">
-      <RealUserForm />
-      </div>
-      <div>
-      <RealUserTable />
-      </div>
-      <br></br>
-      <div >
-        <BarChart />
-      </div>
-      
-        
+      <Drawer
+        variant="permanent"
+        className={clsx(classes.drawer, {
+          [classes.drawerOpen]: open,
+          [classes.drawerClose]: !open,
+        })}
+        classes={{
+          paper: clsx({
+            [classes.drawerOpen]: open,
+            [classes.drawerClose]: !open,
+          }),
+        }}
+      >
+        <div className={classes.toolbar}>
+          <IconButton onClick={handleDrawerClose}>
+            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
+          </IconButton>
         </div>
-    )
+        <Divider />
+        <List >
+       <ListItem autoFocus button onClick={(e)=>{setActiveStep(0)}} > <UniIcon fontSize="large" color="primary"/><Typography style={{marginLeft:"30px"}}>Students Table</Typography></ListItem>
+       <ListItem button onClick={(e)=>{setActiveStep(1)}} style={{marginTop:"35px"}}> <AppsIcons fontSize="large" color="primary"/><Typography style={{marginLeft:"30px"}}>Clients Table</Typography> </ListItem>
+       <ListItem button onClick={(e)=>{setActiveStep(2)}} style={{marginTop:"35px"}}> <ChatIcon fontSize="large" color="primary"/><Typography style={{marginLeft:"30px"}}>Chat Box</Typography></ListItem>
+       <ListItem button onClick={(e)=>{setActiveStep(3)}} style={{marginTop:"35px"}}> <RealUserIcon fontSize="large" color="primary"/><Typography style={{marginLeft:"30px"}}>Daily Payments</Typography></ListItem>
+       <ListItem button onClick={(e)=>{setActiveStep(4)}} style={{marginTop:"35px"}}> <BarChartIcon fontSize="large" color="primary"/><Typography style={{marginLeft:"30px"}}>Stats</Typography></ListItem>
+        </List>
+        
+
+      </Drawer>
+      <main className={classes.content}>
+        <div className={classes.toolbar} />
+        <SwipeableViews style={{width:"100%",height:"90%"}}  index={activeStep} onChangeIndex={handleChange}>
+        <React.Fragment >
+          <StudentTable/>
+          {/* <img
+            style={{marginLeft:"60%"}}
+            alt="short"
+            src={StudImage} /> */}
+        </React.Fragment>
+
+        <React.Fragment>
+        <User />
+        </React.Fragment>
+
+        <React.Fragment>
+          
+        <ChatPage />
+       
+        </React.Fragment>
+
+        <React.Fragment>
+        <RealUserForm />  <RealUserTable />
+        </React.Fragment>
+        
+        <React.Fragment>
+          <BarChart />
+        </React.Fragment>
+        
+        </SwipeableViews>
+
+      </main>
+    </div>
+  );
 }
+
 

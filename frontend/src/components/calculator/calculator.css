@@ -21,6 +21,8 @@
     flex-direction: column;
     align-items: center;
     margin-bottom: 3px;
+    margin-top: -60px;
+    
   }
   
   .button {
@@ -45,8 +47,11 @@
       background-color: grey;
       color: white;
       width:150px;
-      box-shadow: 0 0 10px 5px black;
+      box-shadow: 0 0 5px 5px rgb(24, 23, 23);
   }
 .s{
     margin-left: 50px;
+}
+.items {
+  margin-bottom: 4px;
 }

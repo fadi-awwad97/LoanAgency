@@ -3,6 +3,8 @@ import './homeBody.css';
 import { useHistory } from "react-router-dom";
 import { Button,Modal } from 'react-bootstrap';
 import Calculator from '../calculator/Calculator';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
 
 
 export default function HomeBody() {
@@ -20,17 +22,17 @@ export default function HomeBody() {
     <div  className="container">
            
         <div className="main-block" >
-          <h1 className="first-line">What About Predicting Your Payments ?</h1>
+          <h1 className="first-line">Know Your Payment ! Expect It</h1>
           <h3>----------------------------------</h3>
-          <h5>Expect your loan paying-back !! calculate how much you can receive!</h5>
-          <h5 onClick={handleModalShowHide} className="last-line">CHECK IT HERE !!! </h5>
+          <h5>Calculate Your Monthly Payment Using Our Loan Calculator !</h5>
+          <h5 onClick={handleModalShowHide} className="last-line"><ArrowForwardIcon /> Click Here For More  <ArrowBackIcon/></h5>
       </div>
         <div className="side-block" >
             <h1 className="first-line">GET APPROVED For $5,000 – $5,000,000</h1>
             <br></br><br></br>
             <h5>Applying Takes Minutes. Very Fast Response.</h5>
             <h5>No Obligations.</h5>
-            <h5 className="last-line2"> *Must be a Lebanese Business</h5>
+            <h5 className="last-line2"> *Must Be A Lebanese Resident</h5>
 
         </div>
 
