@@ -22,10 +22,11 @@ import {useHistory} from 'react-router-dom';
 
 const style = theme => ({
   root: {
-    border: `8px solid ${theme.palette.common.white}`,
+    border: `3px solid ${theme.palette.common.white}`,
     margin: 36,
-    padding: "36px 0 0",
+    padding: "36px 5px 0px",
     background: `rgba(255,255,255,0.9)`,
+    // background: `red`,
     boxShadow: `1px -1px 1px ${
       theme.palette.primary.light
     },1px -1px 1px 1px rgba(255,255,255,0.6),1px 2px 25px 2px rgba(0,0,0,0.6)
@@ -175,7 +176,7 @@ const Content = ({ classes }) => {
             required
             id="firstName"
             name="firstName"
-            label="First name"
+            label="First Name"
             fullWidth
             value={firstname}
             autoComplete="given-name"
@@ -187,7 +188,7 @@ const Content = ({ classes }) => {
             required
             id="lastName"
             name="lastName"
-            label="Last name"
+            label="Last Name"
             fullWidth
             value={lastname}
             autoComplete="family-name"
@@ -199,7 +200,7 @@ const Content = ({ classes }) => {
             required
             id="address"
             name="address"
-            label="Address line "
+            label="Address Line "
             fullWidth
             value={address}
             autoComplete=" address-line"
@@ -211,7 +212,7 @@ const Content = ({ classes }) => {
             required
             id="email"
             name="email"
-            label="email"
+            label="Email"
             fullWidth
             autoComplete="email"
             value={email}
@@ -223,7 +224,7 @@ const Content = ({ classes }) => {
             required
             id="phone"
             name="phone"
-            label="phone"
+            label="Phone"
             fullWidth
             autoComplete="phone"
             value={phone}
@@ -258,12 +259,12 @@ const Content = ({ classes }) => {
                </select>
                </Grid>
       <Grid container spacing={5}>
-      <Grid item xs={12} sm={6}>
+      <Grid style={{marginTop:"8px"}} item xs={12} sm={6}>
           <TextField
             required
             id="universityid"
             name="universityid"
-            label="ID"
+            label="Id"
             fullWidth
             autoComplete="universityid"
             value={universityid}
@@ -271,12 +272,12 @@ const Content = ({ classes }) => {
           />
         </Grid>
 
-        <Grid item xs={12} sm={6}>
+        <Grid style={{marginTop:"8px"}} item xs={12} sm={6}>
           <TextField
             required
             id="universitymajor"
             name="universitymajor"
-            label="MAJOR"
+            label="Major"
             fullWidth
             autoComplete="universitymajor"
             value={universitymajor}

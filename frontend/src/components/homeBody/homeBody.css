@@ -29,8 +29,8 @@
     margin-top: 50px;
     position: relative;
     animation-name: example;
-    animation-duration: 5s;
-    animation-delay: 0s;
+    animation-duration: 3.5s;
+    animation-delay: 5s;
 
   }
   .side-block {
@@ -46,8 +46,8 @@
     margin-top: 50px;
     position: relative;
     animation-name: example1;
-    animation-duration: 5s;
-    animation-delay: 0s;
+    animation-duration: 3.5s;
+    animation-delay: 5s;
 }
 
 
@@ -72,6 +72,7 @@ animation-iteration-count: infinite; */
 background-color: white;
 height:30px;
 color: black;
+cursor: pointer;
 }
 /* @keyframes example2 {
   0%   {background-color: black; color: white;}

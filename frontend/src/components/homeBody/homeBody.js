@@ -17,6 +17,10 @@ export default function HomeBody() {
     function handleModalShowHide() {
        setShowHide(!showHide)
     }
+
+    function handleApply() {
+        history.push("/applyHome");
+    }
     return (
 <div className="body">
     <div  className="container">
@@ -26,13 +30,13 @@ export default function HomeBody() {
           <h3>----------------------------------</h3>
           <h5>Calculate Your Monthly Payment Using Our Loan Calculator !</h5>
           <h5 onClick={handleModalShowHide} className="last-line"><ArrowForwardIcon /> Click Here For More  <ArrowBackIcon/></h5>
-      </div>
+      </div> 
         <div className="side-block" >
             <h1 className="first-line">GET APPROVED For $5,000 – $5,000,000</h1>
             <br></br><br></br>
             <h5>Applying Takes Minutes. Very Fast Response.</h5>
             <h5>No Obligations.</h5>
-            <h5 className="last-line2"> *Must Be A Lebanese Resident</h5>
+            <h5 className="last-line2" onClick={handleApply}> <ArrowForwardIcon /> Apply Here <ArrowBackIcon/></h5>
 
         </div>
 

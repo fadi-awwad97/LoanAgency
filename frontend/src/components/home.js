@@ -176,7 +176,7 @@ function handleSendmessage(newMessage) {
         <div> 
             <Toolbar />
             <HomeBody />
-            <HomeFooter listenerID={uid}/>
+            {/* <HomeFooter listenerID={uid}/> */}
             <SecondHome />
             <Map />
             <Widget             

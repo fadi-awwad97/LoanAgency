@@ -10,8 +10,8 @@ export class MapContainer extends Component {
   render() {
     return (
         <div>
-            <div style={{width:"100%",height:"50px",backgroundColor:"grey", textAlign:"center",fontFamily:"Times New Roman, Times, serif"}}>
-             <h3>You can reach us through Google Map </h3>
+            <div style={{width:"100%",height:"1px",backgroundColor:"grey", textAlign:"center",fontFamily:"Times New Roman, Times, serif"}}>
+             {/* <h3>You can reach us through Google Map </h3> */}
 
             </div>
       {/* <Map google={this.props.google} style={{height:'500px'}} initialCenter={{

@@ -148,8 +148,8 @@ function Calculator() {
             //   Form to display the results to the user
             <div className='form-items'>
               <h4>
-                Loan amount: ${userValues.amount} <br /> Interest:{' '}
-                {userValues.interest}% <br /> Years to repay: {userValues.years}
+                Loan Amount: ${userValues.amount} <br /> Interest:{' '}
+                {userValues.interest}% <br /> Years To Repay: {userValues.years}
               </h4>
               <div className="items">
                 <label id='label'>Monthly Payment:</label>
