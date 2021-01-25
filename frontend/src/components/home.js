@@ -30,9 +30,53 @@ const [messageRecieved, setMessageRecieved] = useState([]);
 
 useEffect(() => {
 
+
+    let old =localStorage.getItem("user");
+    if (old !==null){
+
+      setTimeout(() => {
+        CometChat.login(old, apiKey).then(
+          user => {
+            console.log("Login Successful:", { user });    
+          },
+          error => {
+            console.log("Login failed with exception:", { error });    
+          }
+        )
+      }, 3000);
+setTimeout(()=>{
+  var UID = "SUPERHERO2";
+  var limit = 10;
   
-    addResponseMessage("Hello Dear We Are Here to Help You")
-  // 5ala2naaa l user hone 
+  var messagesRequest = new CometChat.MessagesRequestBuilder()
+    .setLimit(limit)
+    .setUID(UID)
+    .build();
+  
+  messagesRequest.fetchPrevious().then(
+    messages => {
+      console.log("Message list fetched:", messages);
+      // Handle the list of messages
+      messages.forEach( message => {
+        if(message.sender.uid == "superhero2"){
+          addResponseMessage(message.text);
+        } else {
+          addUserMessage(message.text)
+        }
+      });
+    },
+    error => {
+      console.log("Message fetching failed with error:", error);
+    }
+  );
+
+},4000)
+
+    }
+    
+    else {
+      addResponseMessage("Hello Dear We Are Here to Help You")
+      localStorage.setItem("user",uid);
     const user = new CometChat.User(uid);
   
     user.setName(name);
@@ -44,6 +88,12 @@ useEffect(() => {
         console.log("error", error);
       }
     );
+
+
+
+
+
+
     setTimeout(() => {
       CometChat.login(uid, apiKey).then(
         user => {
@@ -54,7 +104,7 @@ useEffect(() => {
         }
       )
     }, 3000);
-
+  }
     return () => {
       
       CometChat.removeMessageListener(uid);
@@ -70,32 +120,7 @@ useEffect(() => {
     
 
   }, []);
-  // window.onload = (event) => {
-  //   // 5ala2naaa l user hone 
-   
-  //   const user = new CometChat.User(uid);
-  
-  //   user.setName(name);
-    
-  //   CometChat.createUser(user, authKey).then(
-  //     user => {
-  //       console.log("user created", user);
-  //     },error => {
-  //       console.log("error", error);
-  //     }
-  //   );
-    // setTimeout(() => {
-    //   CometChat.login(uid, apiKey).then(
-    //     user => {
-    //       console.log("Login Successful:", { user });    
-    //     },
-    //     error => {
-    //       console.log("Login failed with exception:", { error });    
-    //     }
-    //   )
-    // }, 3000);
- 
-// };
+
 
   useEffect(()=> {
     // console.log("hellooo")
@@ -140,36 +165,6 @@ function handleSendmessage(newMessage) {
     // function handletest() {
     //   console.log(messageRecieved);
     // }
-
-
-//     window.addEventListener("beforeunload", (ev) => 
-// {  
-//     ev.preventDefault();
-//     let listenerID=uid.toString();
-//     CometChat.removeUserListener(listenerID);
-  
-// });
-// window.onclose = closingCode;
-// function closingCode(){
-   
-//   fetch("https://api-us.cometchat.io/v2.0/users/"+uid, {
-//     "method": "DELETE",
-//     "headers": {
-//       "appId": "27600cf5c7008b6",
-//       "apiKey": "31615a2157bbda00c08c39d3caba8d3a93f80e78",
-//       "Content-Type": "application/json",
-//       "Accept": "application/json"
-//     },
-//     "body": "{\"permanent\":true}"
-//   })
-//   .then(response => {
-//     console.log(response);
-//   })
-//   .catch(err => {
-//     console.error(err);
-//   });
-//    return null;
-// }
 
 
     return (
