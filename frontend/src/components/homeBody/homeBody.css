@@ -28,9 +28,9 @@
     box-shadow: rgb(0, 0, 0) 3px 3px 6px 0px inset, rgba(0, 0, 0, 0.5) -3px -3px 6px 1px inset;
     margin-top: 50px;
     position: relative;
-    animation-name: example;
+    /* animation-name: example;
     animation-duration: 3.5s;
-    animation-delay: 5s;
+    animation-delay: 5s; */
 
   }
   .side-block {
@@ -45,9 +45,9 @@
     box-shadow: rgb(204, 219, 232) 3px 3px 6px 0px inset, rgba(255, 255, 255, 0.5) -3px -3px 6px 1px inset;
     margin-top: 50px;
     position: relative;
-    animation-name: example1;
+    /* animation-name: example1;
     animation-duration: 3.5s;
-    animation-delay: 5s;
+    animation-delay: 5s; */
 }
 
 

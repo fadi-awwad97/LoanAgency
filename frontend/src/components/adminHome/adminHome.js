@@ -1,27 +1,15 @@
+import React,{useEffect,useState} from 'react';
 
-
-
-// import React from 'react';
 import clsx from 'clsx';
 import {  useTheme } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
-
-
-
 import CssBaseline from '@material-ui/core/CssBaseline';
-
 import Divider from '@material-ui/core/Divider';
-
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 
 
-import React,{useEffect,useState} from 'react';
-import MaterialTable from 'material-table';
-import axios from 'axios';
-import Done from "@material-ui/icons/Mail";
-import tableIcons from "./TableIcons.js";
 import './adminHome.css';
 import User from "./clientsTable";
 import ChatPage from './agentChat';
@@ -33,7 +21,7 @@ import RealUserIcon from '@material-ui/icons/HowToReg';
 import UniIcon from '@material-ui/icons/School';
 import AppsIcons from '@material-ui/icons/Group';
 import ChatIcon from '@material-ui/icons/QuestionAnswer';
-import {Link} from 'react-scroll';
+
 import StudentTable from './studentsTable';
 import BarChart from './barChart';
 // import { askForPermissioToReceiveNotifications } from '../../pushnotification';
@@ -50,14 +38,12 @@ import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
-import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
 import firebase from 'firebase';
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
-
 import BarChartIcon from '@material-ui/icons/BarChart';
 
 const drawerWidth = 240;
@@ -187,8 +173,6 @@ export default function AdminHome() {
 
   const [activeStep, setActiveStep] = useState(0);
   const handleChange = index => e => setActiveStep(index);
-  const nandleNext = () => setActiveStep(activeStep + 1);
-  const nandlePrev = () => setActiveStep(activeStep - 1);
   
   const [open1, setOpen1] = useState(false);
 
@@ -260,12 +244,7 @@ export default function AdminHome() {
                       </ListItem>
                     </List>
             })}
-                   {/* <List >
-                      <ListItem>Short Term Loan : {short.length}</ListItem>   
-                      <ListItem>Long Term Loan : {long.length}</ListItem>
-                      <ListItem>Wedding Loan : {wedding.length}</ListItem>
-                      <ListItem>Student Loan : {student.length}</ListItem>
-                    </List> */}
+
         </DialogContent>
         <DialogActions>
 
@@ -311,22 +290,17 @@ export default function AdminHome() {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <SwipeableViews style={{width:"100%",height:"90%"}}  index={activeStep} onChangeIndex={handleChange}>
+        
         <React.Fragment >
-          <StudentTable/>
-          {/* <img
-            style={{marginLeft:"60%"}}
-            alt="short"
-            src={StudImage} /> */}
+          <StudentTable student={student}/>
         </React.Fragment>
 
         <React.Fragment>
-        <User />
+        <User short={short} long={long} wedding={wedding}/>
         </React.Fragment>
 
-        <React.Fragment>
-          
-        <ChatPage />
-       
+        <React.Fragment>         
+        <ChatPage />      
         </React.Fragment>
 
         <React.Fragment>
@@ -334,7 +308,7 @@ export default function AdminHome() {
         </React.Fragment>
         
         <React.Fragment>
-          <BarChart />
+          <BarChart student={student} short={short} long={long} wedding={wedding}/>
         </React.Fragment>
         
         </SwipeableViews>

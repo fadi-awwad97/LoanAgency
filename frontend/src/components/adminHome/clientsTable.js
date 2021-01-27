@@ -7,10 +7,9 @@ import tableIcons from "./TableIcons.js";
 // import { askForPermissioToReceiveNotifications } from '../../pushnotification';
 
 
-export default function AdminHome() {
+export default function AdminHome(data0) {
     const [data, setData] = useState([]);
     const [checked, setChecked] = useState([]);
-    const [items, setItems] = useState([]);
   
  
     useEffect(async () => {
@@ -20,7 +19,7 @@ export default function AdminHome() {
      
         setData(result.data);
         // console.log(data)
-      },[]);
+      },[data0]);
 
 
 

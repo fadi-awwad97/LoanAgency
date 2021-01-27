@@ -5,7 +5,6 @@ import { CometChat } from "@cometchat-pro/chat"
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
@@ -19,28 +18,22 @@ import SendIcon from '@material-ui/icons/Send';
 import ChatIcon from '@material-ui/icons/Message';
 import ChatIcon1 from '@material-ui/icons/Comment';
 import Visibility from '@material-ui/icons/Visibility';
-import MaterialTable from 'material-table';
-import { ClickAwayListener } from '@material-ui/core';
 import './agentChat.css'
 import MessageBox from './messageBox';
-import { func } from 'prop-types';
 import Icon from '@material-ui/core/Icon';
 // import backchat from '../../assets/backchat.jpg';
 
 
 export default function AgentChat() {
-const authKey = "1f210b567aa2122a387b94a9accfc1588264d145";
+// const authKey = "1f210b567aa2122a387b94a9accfc1588264d145";
 const uid = "	SUPERHERO2";
-const name = "Captain America";
 const apiKey = "31615a2157bbda00c08c39d3caba8d3a93f80e78";
-const authToken ="ecommerce-agent4_16088144179c9abe2183372669a2ac0a4c8eab85";
+// const authToken ="ecommerce-agent4_16088144179c9abe2183372669a2ac0a4c8eab85";
 
-const [message, setMessage] = useState("");
+
 const [messagetosend, setMessageToSend] = useState("");
 const [arrmsg, setArrMsg] = useState([]);
-const [time,setTime]= useState([]);
 const [loggedInUsers, setLoggedInUsers]= useState([]);
-const [textForReplying, setTextForReplying]=useState("Send a message");
 const [recieverClient,setRecieverClient]=useState("")
 const [countUsers,setCountUsers]=useState("")
 
@@ -178,9 +171,6 @@ function handleChooseUserToReply(users)  {
 
 }
 
-// function handleUsers(user) {
-//   loggedInUsers.push(user)
-// }
 
     return (
         <div className="chattingComponent">
@@ -209,15 +199,7 @@ function handleChooseUserToReply(users)  {
         <Grid container component={Paper} className={classes.chatSection}>       
             <Grid item xs={3} className={classes.borderRight500}>
 
-   {/* <Grid xs={3} container> */}
-        {/* <Grid item>
-            <Fab><RefreshIcon fontSize="large" color="primary" onClick={handleLoggedInUsers}/> </Fab>
-        </Grid> */}
-        {/* <Grid className="onlineUsers" >
-             <Typography >Reply To Clients Here</Typography>
-            
-        </Grid> */}
-   {/* </Grid> */}
+
                <Grid container>
                 <List className="listofusers">
                 {loggedInUsers.map((users, i) => {           
@@ -244,9 +226,7 @@ function handleChooseUserToReply(users)  {
             <Grid item xs={9}>
 
                 <List className={classes.messageArea}>
-                        <MessageBox data={arrmsg} reciever={recieverClient} />
-                       
-
+                <MessageBox data={arrmsg} reciever={recieverClient} />
                 </List>
 
                 <Divider />

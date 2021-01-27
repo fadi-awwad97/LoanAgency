@@ -5,22 +5,12 @@ import axios from 'axios';
 import Done from "@material-ui/icons/Mail";
 import tableIcons from "./TableIcons.js";
 import './adminHome.css';
-import User from "./clientsTable";
-import ChatPage from './agentChat';
-import RealUserForm from './realUsersForm';
-import RealUserTable from './realUserTable';
 
-import RealUserIcon from '@material-ui/icons/HowToReg';
-import UniIcon from '@material-ui/icons/School';
-import AppsIcons from '@material-ui/icons/Group';
-import ChatIcon from '@material-ui/icons/QuestionAnswer';
-import {Link} from 'react-scroll';
-import { askForPermissioToReceiveNotifications } from '../../pushnotification';
 
-export default function StudentsTable() {
+export default function StudentsTable(data0) {
     const [data, setData] = useState([]);
     const [checked, setChecked] = useState([]);
-    const [items, setItems] = useState([]);
+    
   
  
     useEffect(async () => {
@@ -29,9 +19,8 @@ export default function StudentsTable() {
         );
      
         setData(result.data);
-        // askForPermissioToReceiveNotifications();
-        // console.log(data)
-      },[]);
+
+      },[data0]);
 
 
 
