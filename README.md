@@ -1,5 +1,13 @@
 
-<img src="https://github.com/fadi-awwad97/LoanAgency/blob/main/frontend/src/assets/logo.jpg" width="50"/> Fly Financial is a Loan Agency website where clients Apply for Loans and Chat with service agent for inquiries. The project is built using Node.js ,React.js, Express, and MongoDb.
+<img src="https://github.com/fadi-awwad97/LoanAgency/blob/main/frontend/src/assets/logo.jpg" width="50"/> Fly Financial is a Loan Agency website where clients Apply for Loans and Chat with service agent for inquiries. The project is built using (Mern Stack)
+
+Node.js 
+
+React.js
+
+Express
+
+MongoDb.
 
 
 #### This repo is functionality complete — PRs and issues welcome!
