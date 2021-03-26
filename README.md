@@ -1,5 +1,5 @@
 
-<img src="https://github.com/fadi-awwad97/LoanAgency/blob/main/frontend/src/assets/logo.jpg" width="50"/> Fly Financial is a Loan Agency website where clients Apply for Loans and Chat with service agent for inquiries. The project is built using Node.js, React, and MongoDb.
+<img src="https://github.com/fadi-awwad97/LoanAgency/blob/main/frontend/src/assets/logo.jpg" width="50"/> Fly Financial is a Loan Agency website where clients Apply for Loans and Chat with service agent for inquiries. The project is built using Node.js ,React.js, Express, and MongoDb.
 
 
 #### This repo is functionality complete — PRs and issues welcome!
@@ -14,6 +14,15 @@ Please check the official React installation guide for server requirements befor
 Clone the repository
 
     git clone git@github.com:fadi-awwad97/LoanAgency.git
+
+## Steps To be Done : 
+
+Create Firebase Web App on http://firebase.google.com/ and Change the configuration found in the code.
+
+Create CometChat project on https://app.cometchat.com/ and Change the configuration found in the code.
+
+Create teleSign project on https://www.telesign.com/ and Use your own number and configurations.
+
 
 Switch to the backend folder
 
