@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react';
 
 import Toolbar from './toolbar/toolbar'
 import HomeBody from './homeBody/homeBody';
-import HomeFooter from './homeFooter/homeFooter';
 import SecondHome from './secondHomeBody/secondHomeBody';
 import Map from './map';
 
@@ -13,15 +12,13 @@ import 'react-chat-widget/lib/styles.css';
 
 export default function Home() {
 
+//Needed config for random Clients visiting the home page
 
 const authKey = "1f210b567aa2122a387b94a9accfc1588264d145";
-// const uid = "ecommerce-agent4";
-// const name = "Demo Agent4";
 const name = "clients";
 const apiKey = "31615a2157bbda00c08c39d3caba8d3a93f80e78";
 const authToken="ecommerce-agent4_16088144179c9abe2183372669a2ac0a4c8eab85"
 const uid= "user" +Math.floor(Math.random()*(999-100+1)+100);
-
 const [messageRecieved, setMessageRecieved] = useState([]);
 
 
@@ -29,7 +26,6 @@ const [messageRecieved, setMessageRecieved] = useState([]);
 
 
 useEffect(() => {
-
 
     let old =localStorage.getItem("user");
     if (old !==null){
@@ -47,12 +43,12 @@ useEffect(() => {
 setTimeout(()=>{
   var UID = "SUPERHERO2";
   var limit = 10;
-  
+  //Message Request Builder
   var messagesRequest = new CometChat.MessagesRequestBuilder()
     .setLimit(limit)
     .setUID(UID)
     .build();
-  
+  //Fetch previous messages done between client and Admin after surfing the web
   messagesRequest.fetchPrevious().then(
     messages => {
       console.log("Message list fetched:", messages);
@@ -72,15 +68,13 @@ setTimeout(()=>{
 
 },4000)
 
-    }
-    
+    }//Welcome Message Once home page loaded
     else {
       addResponseMessage("Hello Dear We Are Here to Help You")
       localStorage.setItem("user",uid);
-    const user = new CometChat.User(uid);
-  
-    user.setName(name);
-    
+      const user = new CometChat.User(uid);
+      //Creation of random User and giving him random ID
+    user.setName(name);  
     CometChat.createUser(user, authKey).then(
       user => {
         console.log("user created", user);
@@ -89,11 +83,7 @@ setTimeout(()=>{
       }
     );
 
-
-
-
-
-
+      //Login of the User
     setTimeout(() => {
       CometChat.login(uid, apiKey).then(
         user => {
@@ -106,33 +96,26 @@ setTimeout(()=>{
     }, 3000);
   }
     return () => {
-      
+      //Once you left the Home page logout and remove message listener
       CometChat.removeMessageListener(uid);
       CometChat.logout().then({
-        //Logout completed successfully
-    //   console.log("Logout completed successfully");
     },error=>{
-      //Logout failed with exception
       console.log("Logout failed with exception:",{error});
     })
     dropMessages()
     }
     
-
   }, []);
 
 
   useEffect(()=> {
-    // console.log("hellooo")
+    //Once home page loaded add message listener and open the gate for recieving messages and adding the welcome message
     var listenerID = uid.toString();
     CometChat.addMessageListener(
       listenerID, 
       new CometChat.MessageListener({
         onTextMessageReceived: message => {
-          // console.log("Message received successfully:", message);
-          //  addResponseMessage(message.text)
           setMessageRecieved(...messageRecieved,message)
-          // console.log(messageRecieved)
           addResponseMessage(message.text)
         }
       })
@@ -140,8 +123,7 @@ setTimeout(()=>{
     
   },[messageRecieved]);
 
-  // CometChat.removeUserListener(listenerID);
-
+//function for sending message
 function handleSendmessage(newMessage) {
 
     var receiverID = "SUPERHERO2";
@@ -162,16 +144,11 @@ function handleSendmessage(newMessage) {
     
     }
 
-    // function handletest() {
-    //   console.log(messageRecieved);
-    // }
-
 
     return (
         <div> 
             <Toolbar />
             <HomeBody />
-            {/* <HomeFooter listenerID={uid}/> */}
             <SecondHome />
             <Map />
             <Widget             

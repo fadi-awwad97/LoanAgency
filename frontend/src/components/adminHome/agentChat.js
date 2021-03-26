@@ -1,7 +1,5 @@
 import React ,{useState, useEffect} from 'react';
 import { CometChat } from "@cometchat-pro/chat"
-// import {CometChatUnified } from "./CometChat";
-// import {CometChatUserListScreen } from "./lib/CometChat";
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -21,14 +19,12 @@ import Visibility from '@material-ui/icons/Visibility';
 import './agentChat.css'
 import MessageBox from './messageBox';
 import Icon from '@material-ui/core/Icon';
-// import backchat from '../../assets/backchat.jpg';
 
 
 export default function AgentChat() {
-// const authKey = "1f210b567aa2122a387b94a9accfc1588264d145";
-const uid = "	SUPERHERO2";
-const apiKey = "31615a2157bbda00c08c39d3caba8d3a93f80e78";
-// const authToken ="ecommerce-agent4_16088144179c9abe2183372669a2ac0a4c8eab85";
+
+const uid = "	SUPERHERO2";//Admin ID
+const apiKey = "31615a2157bbda00c08c39d3caba8d3a93f80e78";//ApiKey is generated in the website after creating cometchat project
 
 
 const [messagetosend, setMessageToSend] = useState("");
@@ -46,37 +42,28 @@ const useStyles = makeStyles({
       width: '100%',
       height: '70vh',
       backgroundColor: 'white',
-      borderRadius: "borderRadius",
-      // marginBottom:'5px'
-     
-      
+      borderRadius: "borderRadius",   
     },
     headBG: {
         backgroundColor: 'grey'
     },
     borderRight500: {
         borderRight: '1px solid #e0e0e0',
-        // backgroundColor:'#f2a365',
         backgroundColor:'rgb(124, 133, 216)',
-        // backgroundImage: `url(${backchat})`,
         borderRadius: "2%"
     },
     messageArea: {
       height: '50vh',
       overflowY: 'auto',
-      width:'100%',
-      
-      
+      width:'100%',      
     }
   });
   
-    const classes = useStyles();
+  const classes = useStyles();
   
 
 useEffect(() => {
-
-
-             
+    //Cometchat first step is to confirm loging between users willing to chat     
    CometChat.login(uid, apiKey).then(
     user => {
       console.log("Login Successful:", { user });    
@@ -87,11 +74,9 @@ useEffect(() => {
   )
     },[]);
 
-
-
     useEffect(() => {
         var listenerID = "SUPERHERO2";
-  
+        //Message eventListener is to open a gate for the message to go and come through
         CometChat.addMessageListener(
           listenerID, 
           new CometChat.MessageListener({
@@ -100,7 +85,6 @@ useEffect(() => {
               // Handle text message
               setRecievedMessage(message)
               setArrMsg([...arrmsg,message])
-              // handleLoggedInUsers();
               if(!loggedInUsers.includes(message.sender.uid))
               {
                 setLoggedInUsers(loggedInUsers => [...loggedInUsers, message.sender.uid])
@@ -109,13 +93,7 @@ useEffect(() => {
             }
           },[arrmsg])
          );
-
-
     });
-
-    // useEffect(()=>{
-    //   handleLoggedInUsers();
-    // })
 
 
 function handleSendmessage() {
@@ -129,12 +107,10 @@ function handleSendmessage() {
   
 var receiverType = CometChat.RECEIVER_TYPE.USER;
 var textMessage = new CometChat.TextMessage(receiverID, messagetosend, receiverType);
-
+//Sending a message is done in this section
 CometChat.sendMessage(textMessage).then(
   message => {
     console.log("Message sent successfully:", message);
-    // Do something with message
-    // setMessage(message)
     setArrMsg([...arrmsg,message]);
     setMessageToSend("");
   },
@@ -144,7 +120,7 @@ CometChat.sendMessage(textMessage).then(
   }
 );
 }
-
+//A function to check all logged in users (online)
 function handleLoggedInUsers() {
 let usersRequest = new CometChat.UsersRequestBuilder()
 .setLimit(20)
@@ -153,12 +129,8 @@ let usersRequest = new CometChat.UsersRequestBuilder()
     
     usersRequest.fetchNext().then(
       userList => {
-        /* userList will be the list of User class. */
         console.log("User list received:", userList);
-          // setLoggedInUsers(userList)
           setCountUsers(userList.length)
-        /* retrived list can be used to display contact list. */
-        // console.log("honn " + loggedInUsers)
       },
       error => {
         console.log("User list fetching failed with error:", error);
@@ -166,20 +138,14 @@ let usersRequest = new CometChat.UsersRequestBuilder()
     );
 }
 function handleChooseUserToReply(users)  { 
-
     setRecieverClient(users)
-
 }
-
-
     return (
         <div className="chattingComponent">
-          <div className="chattingSection">
-    
+          <div className="chattingSection">    
         <Grid  item xs={12}  container>
         <Grid  item  xs={3} >
-          <Typography variant="h5" align="center" color="primary">Fly-Financial</Typography>
-       
+          <Typography variant="h5" align="center" color="primary">Fly-Financial</Typography>       
             </Grid>
             <Grid  item  xs={9} >
                 <Typography variant="h5"  align="center" className="header-message">Chat With Your Customers</Typography>
@@ -198,8 +164,6 @@ function handleChooseUserToReply(users)  {
         </Grid>
         <Grid container component={Paper} className={classes.chatSection}>       
             <Grid item xs={3} className={classes.borderRight500}>
-
-
                <Grid container>
                 <List className="listofusers">
                 {loggedInUsers.map((users, i) => {           
@@ -209,11 +173,9 @@ function handleChooseUserToReply(users)  {
                                   </ListItemIcon>                                 
                                   <ListItemText align="left"> {users}</ListItemText>
                                   </ListItem>          
-                     })}
-
+                })}
                 </List>
-                </Grid>
-               
+                </Grid>              
                 <Divider />
                 <Divider />
                 <Divider />
@@ -221,14 +183,11 @@ function handleChooseUserToReply(users)  {
                   <Typography style={{marginLeft:"20%"}}>Logged In Users : {countUsers} <Visibility onClick={handleLoggedInUsers}/></Typography>
                 </List>
              </Grid>
-              {/* <ListItemText > {users.uid}</ListItemText> */}
 
             <Grid item xs={9}>
-
                 <List className={classes.messageArea}>
                 <MessageBox data={arrmsg} reciever={recieverClient} />
                 </List>
-
                 <Divider />
                 <Grid container style={{padding: '20px'}}>
                     <Grid item xs={11}>
@@ -241,8 +200,6 @@ function handleChooseUserToReply(users)  {
             </Grid>
         </Grid>
       </div>
- 
-      {/* <SnackBar reciever={recievedmessage}/> */}
       
 </div>
     )

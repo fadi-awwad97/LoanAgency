@@ -29,15 +29,15 @@ function Calculator() {
   const isValid = () => {
     const { amount, interest, years } = userValues;
     let actualError = '';
-    // Validate if there are values
+   
     if (!amount || !interest || !years) {
       actualError = 'All the values are required';
     }
-    // Validade if the values are numbers
+    
     if (isNaN(amount) || isNaN(interest) || isNaN(years)) {
       actualError = 'All the values must be a valid number';
     }
-    // Validade if the values are positive numbers
+    
     if (Number(amount) <= 0 || Number(interest) <= 0 || Number(years) <= 0) {
       actualError = 'All the values must be a positive number';
     }
@@ -73,7 +73,7 @@ function Calculator() {
         userAmount
       ).toFixed(2);
 
-      // Set up results to the state to be displayed to the user
+     
       setResults({
         monthlyPayment: monthlyPaymentCalculated,
         totalPayment: totalPaymentCalculated,

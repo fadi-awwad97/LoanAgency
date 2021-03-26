@@ -5,7 +5,6 @@ export default function App() {
     <div className="App">
       <div className="wizard">
         <Content />
-
       </div>
     </div>
   );

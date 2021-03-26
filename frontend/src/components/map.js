@@ -5,6 +5,8 @@ import FacebookIcon from '@material-ui/icons/Facebook';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
 import map from '../assets/map.png'
 
+
+//Google Map needs Credit Card , I used a photo instead for now ;) but all configurations done 
 export class MapContainer extends Component {
 
   render() {
@@ -35,9 +37,7 @@ zoom={14}>
       alt="short"
       height="30%"
       style={{marginTop:'2px',cursor:'pointer'}}
-      width="100%"
-
-     
+      width="100%"    
       />
           <div style={{width:"100%",height:"50px",backgroundColor:"white",textAlign:'left'}}>           
           <div><TwitterIcon />  <FacebookIcon />   <LinkedInIcon /> </div>
@@ -54,7 +54,3 @@ export default GoogleApiWrapper({
   apiKey: ('AIzaSyAXKrbppdjtYj1tW8WrqiE59IYUJTQycB0')
 })(MapContainer)
 
-
-// <TwitterIcon />  <FacebookIcon />   <LinkedInIcon /> 
-// <br></br>
-// <p style={{fontFamily: "Lobster , cursive"}}>Copyright © 2021 by Fadi Awwad</p>

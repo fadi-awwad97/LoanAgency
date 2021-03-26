@@ -4,7 +4,6 @@ import Button from "react-bootstrap/Button";
 import "./adminLoginPage.css";
 import { useHistory } from "react-router-dom";
 import Axios from "axios";
-
 import UserContext from "../../context/userContext";
 
 
@@ -12,10 +11,10 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState();
-
   const { setUserData } = useContext(UserContext);
   const history = useHistory();
-
+  
+  //validation
   function validateForm() {
     return email.length > 0 && password.length > 0;
   }

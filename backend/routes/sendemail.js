@@ -3,10 +3,9 @@ const router = require("express").Router();
 
 
 
-
+//Send Email Using nodemailer
 router.post("/sendEmail", async (req, res) => {
-   const email0= {email} = req.body;
-  
+   const email0= {email} = req.body; 
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -31,5 +30,6 @@ transporter.sendMail(mailOptions, function(error, info){
     res.send('Email is sent')
   }
 });
+
 });
 module.exports = router ;

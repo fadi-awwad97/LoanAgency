@@ -1,4 +1,3 @@
-
 import React,{useEffect,useState} from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios';
@@ -12,24 +11,18 @@ export default function StudentsTable(data0) {
     const [checked, setChecked] = useState([]);
     
   
- 
     useEffect(async () => {
         const result = await axios(
           'http://localhost:5000/user/getStudentData',
-        );
-     
+        );     
         setData(result.data);
-
       },[data0]);
 
 
-
       const sendEmail = async (email) => {
-        // e.preventDefault();
         const email1 = {email}
         axios.post('http://localhost:5000/user/sendEmail',email1)
         .then(function(response) {
-          // console.log(response.data);
            if (response.data ==='Email is sent') {
              alert("Email Is Sent")
            }
@@ -41,8 +34,6 @@ export default function StudentsTable(data0) {
      
     return (
         <div>
-            
-
                     <div className="conta" id="StudentApp" >
                     <MaterialTable
                     title="Select row(s) to get the option to delete"
@@ -115,8 +106,6 @@ export default function StudentsTable(data0) {
                     title="STUDENTS APPLICATIONS"
                     />
                     </div>
-
-
         </div>
     )
 }

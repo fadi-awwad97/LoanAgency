@@ -3,7 +3,6 @@ import SwipeableViews from "react-swipeable-views";
 import axios from 'axios';
 import {
   Paper,
-  // Grid,
   Typography,
   withStyles,
   Button,
@@ -26,7 +25,6 @@ const style = theme => ({
     margin: 36,
     padding: "36px 5px 0px",
     background: `rgba(255,255,255,0.9)`,
-    // background: `red`,
     boxShadow: `1px -1px 1px ${
       theme.palette.primary.light
     },1px -1px 1px 1px rgba(255,255,255,0.6),1px 2px 25px 2px rgba(0,0,0,0.6)
@@ -71,20 +69,15 @@ const Content = ({ classes }) => {
   const [universityid,setUniversityId]=useState("");
   const [universitymajor,setUniversityMajor]=useState("");
   const [expectedyears,setExpectedYears]=useState("");
-  
-
   const [neededamount,setNeededAmount]=useState("");
-  // console.log(expectedyears)
 
 
+  // fetch universities from external Api 
   useEffect(async () => {
     const result = await axios(
       'http://universities.hipolabs.com/search?country=lebanon',
     );
- 
       setUniversitiesName(result.data)
-    // console.log(result.data)
-    // console.log(result.data)
   },[]);
 
   
@@ -107,11 +100,8 @@ const Content = ({ classes }) => {
             console.log(response.data)
             if (response.data==true) {
               alert(firstname + 'Your request been added!');
-
-
               var key = 'AAAA10WWUxI:APA91bHlPzmRRieNQC2o-rt85i7zNa4Er35GIWbWTXnoPqxnooYY4TH7F34_3B2P2gN528BhNKYkGXeKtft44zfYvMT51x6N1KP-EYCUDLSrgNzwd8engzX8YLq3i9wqTW9Tqq_qnF8I';
               var to = ' cHsEyq8wt5K2ERuvrgi75O:APA91bFlXQowRYOwoCPKlQhI5WUDmvs2cEsn4e4KoVxbYJiNhygWPqMobP-qGdPxL0NxOmkxavJ5ArUnVMKbXKkEEdgqCVSYCXT78TAnr4u63SZD9mhTMeqfAcN7ahJU5SbrMxzxZ1Vh';
-              // var to ="924585448210"
               var notification = {
                 'title': 'Loan',
                 'body': firstname +" "+ lastname + " Applied For Student Loan",
@@ -133,11 +123,6 @@ const Content = ({ classes }) => {
               }).catch(function(error) {
                 console.error(error);
               })
-             
-
-
-
-
               history.push("/")
             }
           })
@@ -164,7 +149,6 @@ const Content = ({ classes }) => {
 
       <form>
         <SwipeableViews index={activeStep} onChangeIndex={handleChange}>
-          {/* <View1 handleName={handleName}/> */}
             <div>
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -242,12 +226,9 @@ const Content = ({ classes }) => {
       </Grid>
     </React.Fragment>
             </div>
-
-
-          <div>
-          <React.Fragment>
-          {/* <Grid container spacing={0.5}> */}
-             <Grid >
+    <div>
+    <React.Fragment>
+       <Grid >
                <Typography variant="h6" gutterBottom>
                  CHOOSE YOUR UNIVERSITY
                  </Typography>
@@ -257,7 +238,8 @@ const Content = ({ classes }) => {
                {universityList}
                
                </select>
-               </Grid>
+      </Grid>
+
       <Grid container spacing={5}>
       <Grid style={{marginTop:"8px"}} item xs={12} sm={6}>
           <TextField
@@ -314,14 +296,9 @@ const Content = ({ classes }) => {
       </RadioGroup>
 
       </Grid>
-        </Grid>
-
- 
-      
+        </Grid>     
         </React.Fragment>
           </div>
-          
-
           <div>
             <React.Fragment>
             <Typography variant="h6" gutterBottom>
@@ -387,17 +364,6 @@ const Content = ({ classes }) => {
               </Button>
             </Grid>
           )}
-          {/* {activeStep === tabs.length - 1 && (
-            <Grid item>
-              <Button
-                color="primary"
-                className={classes.navigation}
-                variant="contained"
-              >
-                Submit
-              </Button>
-            </Grid>
-          )} */}
         </Grid>
       </form>
     </Paper>

@@ -6,9 +6,6 @@ import Calculator from './components/calculator/Calculator';
 import ApplyPage from './components/applyPage/applyPage';
 import Home from './components/home';
 import Test from './test';
-
-
-
 import UserContext from "./context/userContext";
 import Axios from "axios";
 import applyHome from "./components/applyHome/applyHome";
@@ -19,7 +16,7 @@ export default function App() {
     token: undefined,
     user: undefined,
   });
-
+//JWT AUTH 
   useEffect(() => {
     const checkLoggedIn = async () => {
       let token = localStorage.getItem("auth-token");
@@ -31,9 +28,7 @@ export default function App() {
         "http://localhost:5000/user/tokenIsValid",
         null,
         { headers: { "x-auth-token": token } }
-      );
-      
-      
+      );     
       if (tokenRes.data) {
         const userRes = await Axios.get("http://localhost:5000/user/", {
           headers: { "x-auth-token": token },

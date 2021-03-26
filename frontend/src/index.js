@@ -6,7 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { initializeFirebase } from './pushnotification';
 import { CometChat } from "@cometchat-pro/chat";
-// import * as serviceWorker from './serviceWorker';
+
 
 const appID = "27600cf5c7008b6";
 const region = "us";
@@ -24,19 +24,13 @@ CometChat.init(appID, appSetting).then(
 
 
 
-
-
-
 ReactDOM.render(
-  // <React.StrictMode>
     <BrowserRouter>
     <App />
     </BrowserRouter>,
-  // </React.StrictMode>,
   document.getElementById('root')
   
 );
-// serviceWorker.register();
 initializeFirebase();
 
 // If you want to start measuring performance in your app, pass a function

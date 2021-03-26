@@ -20,7 +20,7 @@
     text-decoration: none; 
     font-size: 16px;
     cursor: pointer;
-    -webkit-transition-duration: 0.4s; /* Safari */
+    -webkit-transition-duration: 0.4s; 
     transition-duration: 0.4s;
     border-radius: 5%;
     font-family:'Times New Roman', Times, serif ;
@@ -32,7 +32,6 @@
 }
 
 @media only screen and (max-width:600px) { 
-
     .apply-button {
         margin-left: 26%;
     }

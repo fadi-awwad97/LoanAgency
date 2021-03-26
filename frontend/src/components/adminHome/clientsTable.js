@@ -1,34 +1,26 @@
-
 import React,{useEffect,useState} from 'react';
 import MaterialTable from 'material-table';
 import axios from 'axios';
 import Done from "@material-ui/icons/Mail";
 import tableIcons from "./TableIcons.js";
-// import { askForPermissioToReceiveNotifications } from '../../pushnotification';
 
 
 export default function AdminHome(data0) {
     const [data, setData] = useState([]);
     const [checked, setChecked] = useState([]);
-  
- 
+   
     useEffect(async () => {
         const result = await axios(
           'http://localhost:5000/user/getUserData',
-        );
-     
+        );     
         setData(result.data);
-        // console.log(data)
       },[data0]);
 
-
-
+      //Send Email Function
       const sendEmail = async (email) => {
-        // e.preventDefault();
         const email1 = {email}
         axios.post('http://localhost:5000/user/sendEmail',email1)
         .then(function(response) {
-          // console.log(response.data);
            if (response.data ==='Email is sent') {
              alert("Email Is Sent")
            }
@@ -39,7 +31,6 @@ export default function AdminHome(data0) {
       }
      
     return (
-        
              <div className="conta" >
         <MaterialTable
            title="Select row(s) to get the option to delete"
@@ -52,36 +43,28 @@ export default function AdminHome(data0) {
             { title: 'Phone', field: 'phone'},    
             { title: 'Client Salary', field: 'monthlySal'},
             { title: 'Working Experience', field: 'howLong'},
-            { title: 'Loan Requested', field: 'loanOption'},
-
-                     
+            { title: 'Loan Requested', field: 'loanOption'},                     
           ]}
 
         options={{
           selection: false,
           showSelectAllCheckbox: false,
-          // actionsColumnIndex: -1
           rowStyle: {
             backgroundColor: '#EEE',
           },
           headerStyle: {
             backgroundColor: '#4e89ae',
             color: '#FFF'
-          }
-         
+          }         
         }}
         icons={tableIcons}
 
         editable={{
-
-          onRowDelete: (oldData) =>
-               
+          onRowDelete: (oldData) =>              
             new Promise((resolve, reject) => {
-              setTimeout(() => {
-                
+              setTimeout(() => {               
                 const dataDelete = [...data];
                 const index = oldData.tableData.id;
-
                 const deleteInfo = { oldData };
                 axios.post(
                    "http://localhost:5000/user/deleteUser",

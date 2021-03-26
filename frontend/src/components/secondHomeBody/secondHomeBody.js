@@ -8,8 +8,6 @@ export default function secondHomeBody() {
     return (
     <div>
          <div style={{width:"100%",height:"2px",backgroundColor:"grey" }}>
-             {/* <h3>You can reach us through Google Map </h3> */}
-
             </div>
         <div className="first-icon">
             <img

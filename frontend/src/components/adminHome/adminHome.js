@@ -1,4 +1,5 @@
 import React,{useEffect,useState} from 'react';
+import firebase from 'firebase';
 
 import clsx from 'clsx';
 import {  useTheme } from '@material-ui/core/styles';
@@ -8,7 +9,6 @@ import Divider from '@material-ui/core/Divider';
 import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import ChevronRightIcon from '@material-ui/icons/ChevronRight';
-
 
 import './adminHome.css';
 import User from "./clientsTable";
@@ -24,8 +24,6 @@ import ChatIcon from '@material-ui/icons/QuestionAnswer';
 
 import StudentTable from './studentsTable';
 import BarChart from './barChart';
-// import { askForPermissioToReceiveNotifications } from '../../pushnotification';
-// import { initializeFirebase } from '../../pushnotification';//mesh 3atol
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -40,11 +38,12 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 
-import firebase from 'firebase';
-
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import BarChartIcon from '@material-ui/icons/BarChart';
+
+
+
 
 const drawerWidth = 240;
 
@@ -102,7 +101,6 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     justifyContent: 'flex-end',
     padding: theme.spacing(0, 1),
-    // necessary for content to be below app bar
     ...theme.mixins.toolbar,
   },
   content: {
@@ -116,38 +114,34 @@ export default function AdminHome() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
-
-
   const [notficData,setnotficData]=useState([]);
   const [long,setLong]=useState([]);
   const [short,setShort]=useState([]);
   const [wedding,setWedding]=useState([]);
-  const [student,setStudent]=useState([]);
+  const [student,setStudent]=useState([]);  
+  const [activeStep, setActiveStep] = useState(0);
+  const [open1, setOpen1] = useState(false);
 
 
      useEffect(() => {
-      // initializeFirebase();
+
        askForPermissioToReceiveNotifications()
-  
-      
 
      },[])
     
-
+//Firebase Asks for permission to send notifications Once
      const askForPermissioToReceiveNotifications = async () => {
       try {
         const messaging = firebase.messaging();
         await messaging.requestPermission();
         const token = await messaging.getToken();
         console.log('user token: ', token);
-        // return token;
     
+        //Once a request is sent , it is catched here (payload) 
         messaging.onMessage(function(payload){
           console.log('onMessage ', payload.notification.body)
 
           setnotficData(notficData => [...notficData, payload.notification.body]);
-
-          
 
           if(payload.notification.title==="SHORT TERM LOAN"){
             setShort(short => [...short, payload.notification.body]);
@@ -169,12 +163,8 @@ export default function AdminHome() {
         console.error(error);
       }
     }
-
-
-  const [activeStep, setActiveStep] = useState(0);
-  const handleChange = index => e => setActiveStep(index);
   
-  const [open1, setOpen1] = useState(false);
+  const handleChange = index => e => setActiveStep(index);
 
   const handleClickOpen = () => {
     setOpen1(true);
@@ -224,11 +214,11 @@ export default function AdminHome() {
             Fly Financial 
           </Typography>
           
-            <IconButton style={{marginLeft:"80%"}} aria-label="show notifications" color="inherit">
-              <Badge badgeContent={notficData.length} color="secondary">
-                 <NotificationsIcon onClick={handleClickOpen}/>
-                 <Dialog
-                 style={{marginLeft:'60%',marginTop:'-100px',width:'50%',height:'100%'}}
+        <IconButton style={{marginLeft:"80%"}} aria-label="show notifications" color="inherit">
+        <Badge badgeContent={notficData.length} color="secondary">
+        <NotificationsIcon onClick={handleClickOpen}/>
+        <Dialog
+        style={{marginLeft:'60%',marginTop:'-100px',width:'50%',height:'100%'}}
         open={open1}
         onClose={handleClose}
         aria-labelledby="alert-dialog-title"
@@ -236,7 +226,6 @@ export default function AdminHome() {
       >
         <DialogTitle >{"New Applicantions !"}</DialogTitle>
         <DialogContent style={{marginLeft:'-17px'}}>
-                 {/* <DialogContentText > */}
             {notficData.map((data,i)=>{
             return  <List  key={i}>
                       <ListItem style={{borderBottom:'1px solid blue'}}>
@@ -246,15 +235,15 @@ export default function AdminHome() {
             })}
 
         </DialogContent>
-        <DialogActions>
 
+        <DialogActions>
           <Button onClick={handleClose} color="primary" autoFocus>
             Ok
           </Button>
         </DialogActions>
-      </Dialog>
-              </Badge>
-            </IconButton>
+            </Dialog>
+            </Badge>
+       </IconButton>
 
         </Toolbar>
       </AppBar>
@@ -285,7 +274,6 @@ export default function AdminHome() {
        <ListItem button onClick={(e)=>{setActiveStep(4)}} style={{marginTop:"35px"}}> <BarChartIcon fontSize="large" color="primary"/><Typography style={{marginLeft:"30px"}}>Stats</Typography></ListItem>
         </List>
         
-
       </Drawer>
       <main className={classes.content}>
         <div className={classes.toolbar} />

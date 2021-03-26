@@ -24,18 +24,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: 'center', 
     backgroundSize: 'cover', 
     backgroundRepeat: 'no-repeat',
-    // overflow:'hidden',
-    // height: '25vh',
-    // width: 'calc(20vw * 0.54 - 2%)',
-    // borderRadius: 8,
     display: 'flex',
-    // marginLeft: '10px',
-    // marginTop: '10px'
 
   },
   stepper: {
     backgroundColor:'rgba(140, 140, 140, 0.5)',
-    // backgroundColor:'grey',
     
   },
 
@@ -82,15 +75,10 @@ export default function VerticalLinearStepper() {
   const history= useHistory();
 
 
-  // useEffect(() => {
-  //   askForPermissioToReceiveNotifications();
-  // }, [])
-  
   function getSteps() {
     return ['1', '2', '3','4','5','6'];
   }
     
-
   const handleNext = () => {
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -111,11 +99,8 @@ export default function VerticalLinearStepper() {
             applyInfo
           );  
 
-
-
           var key = 'AAAA10WWUxI:APA91bHlPzmRRieNQC2o-rt85i7zNa4Er35GIWbWTXnoPqxnooYY4TH7F34_3B2P2gN528BhNKYkGXeKtft44zfYvMT51x6N1KP-EYCUDLSrgNzwd8engzX8YLq3i9wqTW9Tqq_qnF8I';
           var to = ' cHsEyq8wt5K2ERuvrgi75O:APA91bFlXQowRYOwoCPKlQhI5WUDmvs2cEsn4e4KoVxbYJiNhygWPqMobP-qGdPxL0NxOmkxavJ5ArUnVMKbXKkEEdgqCVSYCXT78TAnr4u63SZD9mhTMeqfAcN7ahJU5SbrMxzxZ1Vh';
-          // var to ="924585448210"
           var notification = {
             'title': loanOption,
             'body': firstName +" "+ lastName + " Applied for " + loanOption,
@@ -137,16 +122,10 @@ export default function VerticalLinearStepper() {
           }).catch(function(error) {
             console.error(error);
           })
-         
-            
-
-
-
           history.push("/")
   }
   function handle() {
     // 'icon': 'firebase-logo.png',
-
   }
 
 
@@ -255,7 +234,6 @@ export default function VerticalLinearStepper() {
   return (
     
      <div className={classes.root}>
-       {/* <button onClick={handle}>click me</button> */}
       <Stepper activeStep={activeStep} orientation="vertical" className={classes.stepper} >
         {steps.map((label, index) => (
           <Step key={label}>
@@ -294,8 +272,8 @@ export default function VerticalLinearStepper() {
           </Button>
         </Paper>
       )}
-          <Paper elevation={7}style={{opacity:0.8,height:'100%',margin:'200px',borderRadius:'30px',padding:'10px',width:'500px'}}>
-          <Typography style={{backgroundColor:'rgb(35, 76, 165)'}} align="center">My Info</Typography>
+        <Paper elevation={7}style={{opacity:0.8,height:'100%',margin:'200px',borderRadius:'30px',padding:'10px',width:'500px'}}>
+        <Typography style={{backgroundColor:'rgb(35, 76, 165)'}} align="center">My Info</Typography>
         <Typography  >First Name : <Typography style={{marginLeft:'186px',color:'blue'}} display="inline">{firstName}</Typography></Typography>
         <Typography>Last Name :<Typography style={{marginLeft:'192px',color:'blue'}} display="inline">{lastName}</Typography></Typography>
         <Typography>Email :<Typography style={{marginLeft:'230px',color:'blue'}} display="inline">{email}</Typography></Typography>

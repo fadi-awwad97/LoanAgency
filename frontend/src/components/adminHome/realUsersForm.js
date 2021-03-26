@@ -33,11 +33,8 @@ export default function RealUsersForm({}) {
     const [monthlyPayment, setMonthlyPayment] = useState("");
     const [totalPayment, setTotalPayment] = useState("");
   
-
     const classes = useStyles();
     console.log(startingDate);
-
-
 
     const handleSubmitData = async (e) => {
         e.preventDefault();
@@ -52,19 +49,13 @@ export default function RealUsersForm({}) {
                 console.log(response.data)
                 if (response.data==true) {
                   alert(firstname + 'Your request been added!');
-                  // history.push("/")
                 }
               })
       }
 
-
-
-
-
-
     return (
         <div className="realUserInputForm"> 
-             <React.Fragment>
+      <React.Fragment>
       <Typography variant="h6" color="primary" align="center" gutterBottom>
         Real User Entry
       </Typography>

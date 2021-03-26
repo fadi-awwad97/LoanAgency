@@ -8,20 +8,11 @@ export default function MessageBox(data) {
     const [reciever, setReciever] = useState("");
 
     useEffect(() => {
-        // setUsers([...users,data])
-        // setUsers([...users,data])
-        setReciever(data.reciever)
-        // console.log(reciever)
-        
+        setReciever(data.reciever)       
     },[data,reciever]);
-    
-
-   
-
 
     return (
         <div>
-
             {data.data.map((users,i)=>{
                 if(users.sender.uid == reciever)
                return <ListItem  className="bubble2 bubble-bottom-right" key={i}><ListItemText align="left" >{users.text}</ListItemText> </ListItem>

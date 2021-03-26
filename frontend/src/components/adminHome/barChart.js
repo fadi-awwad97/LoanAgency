@@ -2,11 +2,11 @@
 import React,{useEffect,useState} from 'react';
 import axios from 'axios';
 import { Chart, Series } from 'devextreme-react/chart';
-// import { dataSource } from './data.js';
 import Paper from '@material-ui/core/Paper';
 import './barChart.css';
+
+
 export default function BarChart(data0) {
- 
   const [longTerm,setLongTerm]=useState(0);
   const [wedding,setWedding]=useState(0);
   const [shortTerm,setShortTerm]=useState(0);
@@ -15,14 +15,12 @@ export default function BarChart(data0) {
 
   useEffect(async () => {
     const result = await axios(
-      'http://localhost:5000/user/getUserData',
-      
+      'http://localhost:5000/user/getUserData',      
     );
     const result2 = await axios(
       'http://localhost:5000/user/getStudentData',
     );
     setStudentLoan(result2.data.length)
-    // setData(result.data);
     var long=0;
     var wedding=0;
     var short=0;
@@ -44,12 +42,8 @@ export default function BarChart(data0) {
       }
   })
   
-
   },[data0]);
  
-
-
-
   const dataSource = [{
     type: 'Long Term Loans',
     number: longTerm
@@ -65,12 +59,9 @@ export default function BarChart(data0) {
 
   }];
   
- 
     return (
-      // <Chart id="chart" dataSource={dataSource}>
       <Paper>
      <Chart id="chart" dataSource={dataSource} >
-     {/* <Chart id="chart" dataSource={dataSource} style={{width:'80%',marginLeft:'10%',height:'10%'}}> */}
         <Series
           valueField="number"
           argumentField="type"

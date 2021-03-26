@@ -3,8 +3,8 @@ const connection = require("./models/connection");
 const express = require("express");
 const application = express();
 require("dotenv").config();
-
 const bodyparser = require("body-parser");
+
 
 application.use(function (req, res, next) {
     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -14,16 +14,17 @@ application.use(function (req, res, next) {
     next();
     });
 
-
-
 application.use(express.json());
 application.use(bodyparser.urlencoded ({
     extended:true
 }));
 
+//listen on Port 5000
 application.listen("5000", ()=> {
     console.log("Server started");
 });
+
+
 
 application.use("/user", require("./routes/adminRouter"));
 

@@ -21,18 +21,14 @@ const useStyles = makeStyles({
     float:'right',
     marginRight:'3.6%',
     marginTop:'2%',
-    // border:'1px solid gray',
     height:'400px',
     borderRadius:'5px'
-    
-  
   },
 });
 
 
 export default function RealUserTable() {
   const classes = useStyles();
-
   const [data, setData] = useState([]);
 
 
@@ -48,15 +44,8 @@ export default function RealUserTable() {
 
   function handleSetPaid(user) {
       console.log(user)
-   
-    
-
     axios.put('http://localhost:5000/user/updateRealUserData',user)
     .then(function(response) {
-      // console.log(response.data);
-    //    if (response.data ==='Email is sent') {
-    //      alert("email is sent")
-    //    }
     })
     .catch(function(error) {
       console.log(error);
@@ -81,7 +70,6 @@ return   <Accordion key={i}>
             onFocus={(event) => event.stopPropagation()}
             control={<Checkbox />}
             label={user.firstname}
-            // label={user.lastname }
           />
         </AccordionSummary>
         <AccordionDetails>
@@ -91,6 +79,7 @@ return   <Accordion key={i}>
                 <ListItem style={{color:'#111d5e'}}>Last Name: {user.lastname}</ListItem>
                 <ListItem style={{color:'#111d5e'}}>Monthly Payment: {user.monthlyPayment}</ListItem>
             </List>   
+            
             <List style={{float:'right'}}> 
                 <ListItem style={{color:'#111d5e'}}>Phone Number: {user.phone}</ListItem>
                 <ListItem style={{color:'#111d5e'}}>Total Payment: {user.totalPayment}</ListItem>
