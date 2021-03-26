@@ -10,7 +10,7 @@ Express
 MongoDb.
 
 
-#### This repo is functionality complete — PRs and issues welcome!
+#### This repo functionality is complete — PRs and issues welcome!
 ----------
 # Getting started
 
